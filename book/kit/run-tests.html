@@ -1,0 +1,453 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>run-tests - Nectar Book</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../theme/fonts/custom-fonts.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../intro.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="../identity_system.html">Identity System</a></li><li class="chapter-item expanded affix "><a href="../design_philosophy.html">Design Philosophy</a></li><li class="chapter-item expanded affix "><li class="part-title">Getting Started</li><li class="chapter-item expanded "><a href="../install.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../login.html"><strong aria-hidden="true">2.</strong> Join the Network</a></li><li class="chapter-item expanded affix "><li class="part-title">System Components</li><li class="chapter-item expanded "><a href="../processes.html"><strong aria-hidden="true">3.</strong> Processes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../process-capabilities.html"><strong aria-hidden="true">3.1.</strong> Capability-Based Security</a></li><li class="chapter-item expanded "><a href="../process-startup.html"><strong aria-hidden="true">3.2.</strong> Startup, Spindown, and Crashes</a></li></ol></li><li class="chapter-item expanded "><a href="../networking_protocol.html"><strong aria-hidden="true">4.</strong> Networking Protocol</a></li><li class="chapter-item expanded "><a href="../pki.html"><strong aria-hidden="true">5.</strong> Public Key Infrastructure</a></li><li class="chapter-item expanded "><a href="../http_server_and_client.html"><strong aria-hidden="true">6.</strong> HTTP Server & Client</a></li><li class="chapter-item expanded "><a href="../files.html"><strong aria-hidden="true">7.</strong> Files</a></li><li class="chapter-item expanded "><a href="../databases.html"><strong aria-hidden="true">8.</strong> Databases</a></li><li class="chapter-item expanded affix "><li class="part-title">Process Standard Library</li><li class="chapter-item expanded "><a href="../process_stdlib/overview.html"><strong aria-hidden="true">9.</strong> Overview</a></li><li class="chapter-item expanded affix "><li class="part-title">Tutorial: Build and Deploy an App</li><li class="chapter-item expanded "><a href="../my_first_app/chapter_1.html"><strong aria-hidden="true">10.</strong> Environment Setup</a></li><li class="chapter-item expanded "><a href="../my_first_app/chapter_2.html"><strong aria-hidden="true">11.</strong> Sending Some Messages, Using Some Tools</a></li><li class="chapter-item expanded "><a href="../my_first_app/chapter_3.html"><strong aria-hidden="true">12.</strong> Defining Your Protocol</a></li><li class="chapter-item expanded "><a href="../my_first_app/chapter_4.html"><strong aria-hidden="true">13.</strong> Frontend Time</a></li><li class="chapter-item expanded "><a href="../my_first_app/chapter_5.html"><strong aria-hidden="true">14.</strong> Sharing with the World</a></li><li class="chapter-item expanded affix "><li class="part-title">In-Depth Guide: Chess App</li><li class="chapter-item expanded "><a href="../chess_app/chess_engine.html"><strong aria-hidden="true">15.</strong> Chess Engine</a></li><li class="chapter-item expanded "><a href="../chess_app/frontend.html"><strong aria-hidden="true">16.</strong> Adding a Frontend</a></li><li class="chapter-item expanded "><a href="../chess_app/putting_everything_together.html"><strong aria-hidden="true">17.</strong> Putting Everything Together</a></li><li class="chapter-item expanded "><a href="../chess_app/chat.html"><strong aria-hidden="true">18.</strong> Extension 1: Chat</a></li><li class="chapter-item expanded affix "><li class="part-title">Kit: Development Toolkit</li><li class="chapter-item expanded "><a href="../kit/kit.html"><strong aria-hidden="true">19.</strong> kit</a></li><li class="chapter-item expanded "><a href="../kit/boot-fake-node.html"><strong aria-hidden="true">20.</strong> boot-fake-node</a></li><li class="chapter-item expanded "><a href="../kit/new.html"><strong aria-hidden="true">21.</strong> new</a></li><li class="chapter-item expanded "><a href="../kit/build.html"><strong aria-hidden="true">22.</strong> build</a></li><li class="chapter-item expanded "><a href="../kit/start-package.html"><strong aria-hidden="true">23.</strong> start-package</a></li><li class="chapter-item expanded "><a href="../kit/remove-package.html"><strong aria-hidden="true">24.</strong> remove-package</a></li><li class="chapter-item expanded "><a href="../kit/dev-ui.html"><strong aria-hidden="true">25.</strong> dev-ui</a></li><li class="chapter-item expanded "><a href="../kit/inject-message.html"><strong aria-hidden="true">26.</strong> inject-message</a></li><li class="chapter-item expanded "><a href="../kit/run-tests.html" class="active"><strong aria-hidden="true">27.</strong> run-tests</a></li><li class="chapter-item expanded affix "><li class="part-title">Cookbook (Handy Recipes)</li><li class="chapter-item expanded "><a href="../cookbook/cookbook_overview.html"><strong aria-hidden="true">28.</strong> Cookbook Overview</a></li><li class="chapter-item expanded "><a href="../cookbook/manage_child_processes.html"><strong aria-hidden="true">29.</strong> Managing Child Processes</a></li><li class="chapter-item expanded "><a href="../cookbook/publish_to_web.html"><strong aria-hidden="true">30.</strong> Publishing a Website or Web App</a></li><li class="chapter-item expanded "><a href="../cookbook/file_transfer.html"><strong aria-hidden="true">31.</strong> Simple File Transfer Guide</a></li><li class="chapter-item expanded affix "><li class="part-title">API Reference</li><li class="chapter-item expanded "><a href="../apis/overview.html"><strong aria-hidden="true">32.</strong> APIs Overview</a></li><li class="chapter-item expanded "><a href="../apis/http_authentication.html"><strong aria-hidden="true">33.</strong> HTTP API</a></li><li class="chapter-item expanded "><a href="../apis/http_client.html"><strong aria-hidden="true">34.</strong> HTTP Client API</a></li><li class="chapter-item expanded "><a href="../apis/http_server.html"><strong aria-hidden="true">35.</strong> HTTP Server API</a></li><li class="chapter-item expanded "><a href="../apis/kernel.html"><strong aria-hidden="true">36.</strong> Kernel API</a></li><li class="chapter-item expanded "><a href="../apis/kv.html"><strong aria-hidden="true">37.</strong> KV API</a></li><li class="chapter-item expanded "><a href="../apis/net.html"><strong aria-hidden="true">38.</strong> Net API</a></li><li class="chapter-item expanded "><a href="../apis/nectar_wit.html"><strong aria-hidden="true">39.</strong> nectar.wit</a></li><li class="chapter-item expanded "><a href="../apis/sqlite.html"><strong aria-hidden="true">40.</strong> SQLITE API</a></li><li class="chapter-item expanded "><a href="../apis/terminal.html"><strong aria-hidden="true">41.</strong> Terminal API</a></li><li class="chapter-item expanded "><a href="../apis/vfs.html"><strong aria-hidden="true">42.</strong> VFS API</a></li><li class="chapter-item expanded "><a href="../apis/websocket_authentication.html"><strong aria-hidden="true">43.</strong> Websocket API</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Nectar Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="kit-run-tests"><a class="header" href="#kit-run-tests"><code>kit run-tests</code></a></h1>
+<p><code>kit run-tests</code> runs the tests specified by the given <code>.toml</code> file, or <code>tests.toml</code>, e.g.,</p>
+<pre><code class="language-bash">kit run-tests my_tests.toml
+</code></pre>
+<p>or</p>
+<pre><code class="language-bash">kit run-tests
+</code></pre>
+<p>to run the current working directory's <code>tests.toml</code>.</p>
+<h2 id="discussion"><a class="header" href="#discussion">Discussion</a></h2>
+<p><code>kit run-tests</code> runs a series of tests specified  by <a href="#teststoml">a <code>.toml</code> file</a>.
+Each test is run in a fresh environment of one or more fake nodes.
+A test can setup one or more packages before running a series of test packages.
+Each test package is <a href="#test-package-format">a single-process package that accepts and responds with certain messages</a>.</p>
+<p>Tests are orchestrated from the outside of the node by <code>kit run-tests</code> and run on the inside of the node by the <code>tester</code> core package.
+For a given test, the <code>tester</code> package runs the specified test packages in order.
+Each test package must respond to the <code>tester</code> package with a <code>Pass</code> or <code>Fail</code>.
+The <code>tester</code> package stops on the first <code>Fail</code>, or responds with a <code>Pass</code> if all tests <code>Pass</code>.
+If a given test <code>Pass</code>es, the next test in the series is run.</p>
+<h2 id="arguments"><a class="header" href="#arguments">Arguments</a></h2>
+<pre><code class="language-bash">$ kit t --help
+Run Nectar tests
+
+Usage: kit run-tests [PATH]
+
+Arguments:
+  [PATH]  Path to tests configuration file [default: tests.toml]
+
+Options:
+  -h, --help  Print help
+</code></pre>
+<h3 id="optional-positional-arg-path"><a class="header" href="#optional-positional-arg-path">Optional positional arg: <code>PATH</code></a></h3>
+<p>Path to <a href="https://toml.io/en/"><code>.toml</code></a> file specifying tests to run; defaults to <code>tests.toml</code> in current working directory.</p>
+<h2 id="teststoml"><a class="header" href="#teststoml"><code>tests.toml</code></a></h2>
+<p>The testing protocol is specified by a <code>.toml</code> file.
+Consider the following example, from <a href="">core tests</a>:</p>
+<pre><code class="language-toml">runtime = { FetchVersion = &quot;0.5.0&quot; }
+runtime_build_verbose = false
+
+
+[[tests]]
+
+setup_package_paths = [&quot;chat&quot;]
+test_packages = [
+    { path = &quot;chat_test&quot;, &quot;grant_capabilities&quot; = [&quot;chat:chat:nectar&quot;] }
+    { path = &quot;key_value_test&quot;, grant_capabilities = [] },
+    { path = &quot;sqlite_test&quot;, grant_capabilities = [] },
+]
+package_build_verbose = false
+timeout_secs = 5
+network_router = { port = 9001, defects = &quot;None&quot; }
+
+[[tests.nodes]]
+
+port = 8080
+home = &quot;home/first&quot;
+fake_node_name = &quot;first.nec&quot;
+runtime_verbose = false
+
+[[tests.nodes]]
+
+port = 8081
+home = &quot;home/second&quot;
+fake_node_name = &quot;second.nec&quot;
+runtime_verbose = false
+
+
+[[tests]]
+
+setup_package_paths = []
+test_packages = [
+    { path = &quot;key_value_test&quot;, grant_capabilities = [] }
+]
+package_build_verbose = false
+timeout_secs = 5
+network_router = { port = 9001, defects = &quot;None&quot; }
+
+[[tests.nodes]]
+
+port = 8080
+home = &quot;home/first&quot;
+fake_node_name = &quot;first.nec&quot;
+runtime_verbose = false
+</code></pre>
+<p>which has the directory structure</p>
+<pre><code class="language-bash">core_tests
+├── chat
+│   ├── chat
+│   │   ├── Cargo.lock
+│   │   ├── Cargo.toml
+│   │   └── src
+│   │       └── lib.rs
+│   └── pkg
+│       ├── manifest.json
+│       └── metadata.json
+├── chat_test
+│   ├── chat_test
+│   │   ├── Cargo.lock
+│   │   ├── Cargo.toml
+│   │   └── src
+│   │       ├── lib.rs
+│   │       └── tester_types.rs
+│   └── pkg
+│       ├── manifest.json
+│       └── metadata.json
+├── key_value_test
+│   ├── key_value_test
+│   │   ├── Cargo.lock
+│   │   ├── Cargo.toml
+│   │   └── src
+│   │       ├── key_value_types.rs
+│   │       ├── lib.rs
+│   │       └── tester_types.rs
+│   └── pkg
+│       ├── key_value_test.wasm
+│       ├── manifest.json
+│       └── metadata.json
+├── sqlite_test
+│   ├── pkg
+│   │   ├── manifest.json
+│   │   └── metadata.json
+│   └── sqlite_test
+│       ├── Cargo.lock
+│       ├── Cargo.toml
+│       └── src
+│           ├── lib.rs
+│           ├── sqlite_types.rs
+│           └── tester_types.rs
+└── tests.toml
+
+</code></pre>
+<p>The top-level consists of three fields:</p>
+<div class="table-wrapper"><table><thead><tr><th>Key</th><th>Value Type</th></tr></thead><tbody>
+<tr><td><a href="#runtime"><code>runtime</code></a></td><td><code>{ FetchVersion = &quot;&lt;version&gt;&quot; }</code> or <code>{ RepoPath = &quot;~/path/to/repo&quot; }</code></td></tr>
+<tr><td><a href="#runtime_build_verbose"><code>runtime_build_verbose</code></a></td><td>Boolean</td></tr>
+<tr><td><a href="#tests"><code>tests</code></a></td><td>Array of Tables</td></tr>
+</tbody></table>
+</div>
+<h3 id="runtime"><a class="header" href="#runtime"><code>runtime</code></a></h3>
+<p>Specify the runtime to use for the tests.
+Two option variants are supported.
+An option variant is specified with the key of an Table.</p>
+<p>The first, and recommended is <code>FetchVersion</code>.
+The value of the <code>FetchVersion</code> Table is the version number to fetch and use (or <code>&quot;latest&quot;</code>).
+That version of the runtime binary will be fetched from remote if not found locally.</p>
+<p>The second is <code>RepoPath</code>.
+The value of the <code>RepoPath</code> Table is the path to a local copy of the runtime repo.
+Given a valid path, that repo will be compiled and used.</p>
+<h3 id="runtime_build_verbose"><a class="header" href="#runtime_build_verbose"><code>runtime_build_verbose</code></a></h3>
+<p>Whether to print <code>stdout</code>/<code>stderr</code> from building the given repo, if given <code>RepoPath</code> <code>runtime</code>.</p>
+<h3 id="tests"><a class="header" href="#tests"><code>tests</code></a></h3>
+<p>An Array of Tables.
+Each Table specifies one test to run.
+That test consists of:</p>
+<div class="table-wrapper"><table><thead><tr><th>Key</th><th>Value Type</th><th>Value Description</th></tr></thead><tbody>
+<tr><td><code>setup_package_paths</code></td><td>Array of Paths</td><td>Paths to packages to load into all nodes before running test</td></tr>
+<tr><td><code>test_packages</code></td><td>Array of Tables</td><td>Table containing <code>path</code> (to test package) and <code>grant_capabilities</code> (which will be granted by test package)</td></tr>
+<tr><td><code>package_build_verbose</code></td><td>Boolean</td><td>Whether to print <code>stdout</code>/<code>stderr</code> from building the setup &amp; test packages</td></tr>
+<tr><td><code>timeout_secs</code></td><td>Integer &gt; 0</td><td>Timeout for this entire series of test packages</td></tr>
+<tr><td><code>network_router</code></td><td>Table</td><td>Table containing <code>port</code> (of network router server) and <code>defects</code> (to simulate network weather/defects; currently only <code>&quot;None&quot;</code> accepted)</td></tr>
+<tr><td><a href="#nodes"><code>nodes</code></a></td><td>Array of Tables</td><td>Each Table specifies configuration of one node to spin up for test</td></tr>
+</tbody></table>
+</div>
+<p>Each test package is <a href="#test-package-format">a single-process package that accepts and responds with certain messages</a>.</p>
+<h4 id="nodes"><a class="header" href="#nodes"><code>nodes</code></a></h4>
+<p>Each test specifies one or more nodes: fake nodes that the tests will be run on.
+The first node is the &quot;master&quot; node that will orchestrate the test.
+Each node is specified by a Table.
+That Table consists of:</p>
+<div class="table-wrapper"><table><thead><tr><th>Key</th><th>Value Type</th><th>Value Description</th></tr></thead><tbody>
+<tr><td><code>port</code></td><td>Integer &gt; 0</td><td>Port to run node on (must not be already bound)</td></tr>
+<tr><td><code>home</code></td><td>Path</td><td>Where to place node's home directory</td></tr>
+<tr><td><code>fake_node_name</code></td><td>String</td><td>Name of fake node</td></tr>
+<tr><td><code>password</code></td><td>String or Null</td><td>Password of fake node (default: <code>&quot;secret&quot;</code>)</td></tr>
+<tr><td><code>rpc</code></td><td>String or Null</td><td><a href="../login.html#starting-the-nectar-node"><code>wss://</code> URI of Ethereum RPC</a></td></tr>
+<tr><td><code>runtime_verbose</code></td><td>Boolean</td><td>Whether to print <code>stdout</code>/<code>stderr</code> from the node</td></tr>
+</tbody></table>
+</div>
+<h2 id="test-package-format"><a class="header" href="#test-package-format">Test package format</a></h2>
+<p>A test package is a single-process package that accepts and responds with certain messages.
+Those certain messages are:</p>
+<pre><code class="language-json">{
+    &quot;Run&quot;: {
+        &quot;input_node_names&quot;: [
+            &quot;&lt;master_node_name&gt;&quot;,
+            &quot;&lt;second_node_name&gt;&quot;,
+            ...
+        ],
+        test_timeout: &lt;number&gt;
+    }
+}
+</code></pre>
+<p>which starts the test,</p>
+<pre><code class="language-json">&quot;Pass&quot;
+</code></pre>
+<p>which should be sent as a Response after the test has completed successfully, and</p>
+<pre><code class="language-json">{
+    &quot;Fail&quot;: {
+        &quot;test&quot;: &quot;test_where_error_occurred&quot;,
+        &quot;file&quot;: &quot;file_where_error_occurred&quot;,
+        &quot;line&quot;: &lt;line_number_where_failure_occurred&gt;,
+        &quot;column&quot;: &lt;column_number_where_failure_occurred&gt;
+    }
+}
+</code></pre>
+<p>which should be sent as a Response if the test fails.</p>
+<p>In the Rust language, there is a helper macro for failutres in <code>tester_types.rs</code>.
+That file can be found in the core <code>modules/tester/tester_types.rs</code>.
+The macro is <code>fail!()</code>: it automatically sends the Response, filing out the fields, and exits.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../kit/inject-message.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../cookbook/cookbook_overview.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../kit/inject-message.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../cookbook/cookbook_overview.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../theme/customize-buttons.js"></script>
+
+
+    </div>
+    </body>
+</html>

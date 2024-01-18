@@ -1,0 +1,375 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Processes - Nectar Book</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/fonts/custom-fonts.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="identity_system.html">Identity System</a></li><li class="chapter-item expanded affix "><a href="design_philosophy.html">Design Philosophy</a></li><li class="chapter-item expanded affix "><li class="part-title">Getting Started</li><li class="chapter-item expanded "><a href="install.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="login.html"><strong aria-hidden="true">2.</strong> Join the Network</a></li><li class="chapter-item expanded affix "><li class="part-title">System Components</li><li class="chapter-item expanded "><a href="processes.html" class="active"><strong aria-hidden="true">3.</strong> Processes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="process-capabilities.html"><strong aria-hidden="true">3.1.</strong> Capability-Based Security</a></li><li class="chapter-item expanded "><a href="process-startup.html"><strong aria-hidden="true">3.2.</strong> Startup, Spindown, and Crashes</a></li></ol></li><li class="chapter-item expanded "><a href="networking_protocol.html"><strong aria-hidden="true">4.</strong> Networking Protocol</a></li><li class="chapter-item expanded "><a href="pki.html"><strong aria-hidden="true">5.</strong> Public Key Infrastructure</a></li><li class="chapter-item expanded "><a href="http_server_and_client.html"><strong aria-hidden="true">6.</strong> HTTP Server & Client</a></li><li class="chapter-item expanded "><a href="files.html"><strong aria-hidden="true">7.</strong> Files</a></li><li class="chapter-item expanded "><a href="databases.html"><strong aria-hidden="true">8.</strong> Databases</a></li><li class="chapter-item expanded affix "><li class="part-title">Process Standard Library</li><li class="chapter-item expanded "><a href="process_stdlib/overview.html"><strong aria-hidden="true">9.</strong> Overview</a></li><li class="chapter-item expanded affix "><li class="part-title">Tutorial: Build and Deploy an App</li><li class="chapter-item expanded "><a href="my_first_app/chapter_1.html"><strong aria-hidden="true">10.</strong> Environment Setup</a></li><li class="chapter-item expanded "><a href="my_first_app/chapter_2.html"><strong aria-hidden="true">11.</strong> Sending Some Messages, Using Some Tools</a></li><li class="chapter-item expanded "><a href="my_first_app/chapter_3.html"><strong aria-hidden="true">12.</strong> Defining Your Protocol</a></li><li class="chapter-item expanded "><a href="my_first_app/chapter_4.html"><strong aria-hidden="true">13.</strong> Frontend Time</a></li><li class="chapter-item expanded "><a href="my_first_app/chapter_5.html"><strong aria-hidden="true">14.</strong> Sharing with the World</a></li><li class="chapter-item expanded affix "><li class="part-title">In-Depth Guide: Chess App</li><li class="chapter-item expanded "><a href="chess_app/chess_engine.html"><strong aria-hidden="true">15.</strong> Chess Engine</a></li><li class="chapter-item expanded "><a href="chess_app/frontend.html"><strong aria-hidden="true">16.</strong> Adding a Frontend</a></li><li class="chapter-item expanded "><a href="chess_app/putting_everything_together.html"><strong aria-hidden="true">17.</strong> Putting Everything Together</a></li><li class="chapter-item expanded "><a href="chess_app/chat.html"><strong aria-hidden="true">18.</strong> Extension 1: Chat</a></li><li class="chapter-item expanded affix "><li class="part-title">Kit: Development Toolkit</li><li class="chapter-item expanded "><a href="kit/kit.html"><strong aria-hidden="true">19.</strong> kit</a></li><li class="chapter-item expanded "><a href="kit/boot-fake-node.html"><strong aria-hidden="true">20.</strong> boot-fake-node</a></li><li class="chapter-item expanded "><a href="kit/new.html"><strong aria-hidden="true">21.</strong> new</a></li><li class="chapter-item expanded "><a href="kit/build.html"><strong aria-hidden="true">22.</strong> build</a></li><li class="chapter-item expanded "><a href="kit/start-package.html"><strong aria-hidden="true">23.</strong> start-package</a></li><li class="chapter-item expanded "><a href="kit/remove-package.html"><strong aria-hidden="true">24.</strong> remove-package</a></li><li class="chapter-item expanded "><a href="kit/dev-ui.html"><strong aria-hidden="true">25.</strong> dev-ui</a></li><li class="chapter-item expanded "><a href="kit/inject-message.html"><strong aria-hidden="true">26.</strong> inject-message</a></li><li class="chapter-item expanded "><a href="kit/run-tests.html"><strong aria-hidden="true">27.</strong> run-tests</a></li><li class="chapter-item expanded affix "><li class="part-title">Cookbook (Handy Recipes)</li><li class="chapter-item expanded "><a href="cookbook/cookbook_overview.html"><strong aria-hidden="true">28.</strong> Cookbook Overview</a></li><li class="chapter-item expanded "><a href="cookbook/manage_child_processes.html"><strong aria-hidden="true">29.</strong> Managing Child Processes</a></li><li class="chapter-item expanded "><a href="cookbook/publish_to_web.html"><strong aria-hidden="true">30.</strong> Publishing a Website or Web App</a></li><li class="chapter-item expanded "><a href="cookbook/file_transfer.html"><strong aria-hidden="true">31.</strong> Simple File Transfer Guide</a></li><li class="chapter-item expanded affix "><li class="part-title">API Reference</li><li class="chapter-item expanded "><a href="apis/overview.html"><strong aria-hidden="true">32.</strong> APIs Overview</a></li><li class="chapter-item expanded "><a href="apis/http_authentication.html"><strong aria-hidden="true">33.</strong> HTTP API</a></li><li class="chapter-item expanded "><a href="apis/http_client.html"><strong aria-hidden="true">34.</strong> HTTP Client API</a></li><li class="chapter-item expanded "><a href="apis/http_server.html"><strong aria-hidden="true">35.</strong> HTTP Server API</a></li><li class="chapter-item expanded "><a href="apis/kernel.html"><strong aria-hidden="true">36.</strong> Kernel API</a></li><li class="chapter-item expanded "><a href="apis/kv.html"><strong aria-hidden="true">37.</strong> KV API</a></li><li class="chapter-item expanded "><a href="apis/net.html"><strong aria-hidden="true">38.</strong> Net API</a></li><li class="chapter-item expanded "><a href="apis/nectar_wit.html"><strong aria-hidden="true">39.</strong> nectar.wit</a></li><li class="chapter-item expanded "><a href="apis/sqlite.html"><strong aria-hidden="true">40.</strong> SQLITE API</a></li><li class="chapter-item expanded "><a href="apis/terminal.html"><strong aria-hidden="true">41.</strong> Terminal API</a></li><li class="chapter-item expanded "><a href="apis/vfs.html"><strong aria-hidden="true">42.</strong> VFS API</a></li><li class="chapter-item expanded "><a href="apis/websocket_authentication.html"><strong aria-hidden="true">43.</strong> Websocket API</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Nectar Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="processes"><a class="header" href="#processes">Processes</a></h1>
+<h3 id="overview"><a class="header" href="#overview">Overview</a></h3>
+<p>On NectarOS, processes are the building blocks for peer-to-peer applications.
+The Nectar runtime handles message-passing between processes, plus the startup and teardown of said processes.
+This section describes the message design as it relates to processes.</p>
+<p>Processes have a globally unique identifier, or &quot;address&quot;, composed of four elements.
+First, the publisher's node.
+Second, the package name.
+Third, the process identifier.
+Processes spawn with their own identifier: either a developer-selected string or a randomly-generated number as string.
+And finally, the node the process is running on (your node).</p>
+<p>Package IDs (TODO: link to docs) look like:</p>
+<pre><code>my_cool_software:my_username.nec
+</code></pre>
+<p>Process IDs (TODO: link to docs) look like:</p>
+<pre><code>process_one:my_cool_software:my_username.nec
+8513024814:my_cool_software:my_username.nec
+</code></pre>
+<p>Addresses (TODO: link to docs) look like:</p>
+<pre><code>some_user.nec@process_one:my_cool_software:my_username.nec
+</code></pre>
+<p>Processes are compiled to Wasm.
+They can be started once and complete immediately, or they can run forever.
+They can spawn other processes, and coordinate in arbitrarily complex ways by passing messages to one another.</p>
+<h3 id="process-state"><a class="header" href="#process-state">Process State</a></h3>
+<p>Nectar processes can be stateless or stateful.
+In this case, state refers to data that is persisted between process instantiations.
+Nodes get turned off, intentionally or otherwise.
+The kernel handles rebooting processes that were running previously, but their state is not persisted by default.</p>
+<p>Instead, processes elect to persist data, and what data to persist, when desired.
+Data might be persisted after every message ingested, after every X minutes, after a certain specific event, or never.
+When data is persisted, the kernel saves it to our abstracted filesystem, which not only persists data on disk, but also across arbitrarily many encrypted remote backups as configured at the user-system-level.</p>
+<p>This design allows for ephemeral state that lives in-memory, or truly permanent state, encrypted across many remote backups, synchronized and safe. <a href="./files.html">Read more about filesystem persistence here</a>.</p>
+<h3 id="requests-and-responses"><a class="header" href="#requests-and-responses">Requests and Responses</a></h3>
+<p>Processes communicate by passing messages, of which there are two kinds: <code>requests</code> and <code>responses</code>.</p>
+<h4 id="addressing"><a class="header" href="#addressing">Addressing</a></h4>
+<p>When a request or response is received, it has an attached <code>address</code>, which consists of: the source of the message, including the ID of the process that produced the request, as well as the ID of the originating node.</p>
+<p>The integrity of a source <code>address</code> differs between local and remote messages.
+If a message is local, the validity of its source is ensured by the local kernel, which can be trusted to label the process ID and node ID correctly.
+If a message is remote, only the node ID can be validated (via networking keys associated with each node ID).
+The process ID comes from the remote kernel, which could claim any process ID.
+This is fine — merely consider remote process IDs a <em>claim</em> about the initiating process rather than an infallible ID like in the local case.</p>
+<h4 id="please-respond"><a class="header" href="#please-respond">Please Respond</a></h4>
+<p>Requests can be issued at any time by a running process.
+A request can optionally expect a response.
+If it does, the request will be retained by the kernel, along with an optional <code>context</code> object created by the request's issuer.
+A request will be considered outstanding until the kernel receives a matching response, at which point that response will be delivered to the requester alongside the optional <code>context</code>.
+<code>context</code>s allow responses to be disambiguated when handled asynchronously, for example, when some information about the request must be used in handling the response.
+Responses can also be handled in an async-await style, discussed <a href="#awaiting-a-response">below</a>.</p>
+<p>Requests that expect a response set a timeout value, after which, if no response is received, the initial request is returned to the process that issued it as an error.
+<a href="#errors">Send errors</a> are handled in processes alongside other incoming messages.</p>
+<h5 id="inheriting-a-response"><a class="header" href="#inheriting-a-response">Inheriting a Response</a></h5>
+<p>If a process receives a request, that doesn't mean it must directly issue a response.
+The process can instead issue request(s) that &quot;inherit&quot; from the incipient request, continuing its lineage.
+If a request does not expect a response and also &quot;inherits&quot; from another request, responses to the child request will be returned to the parent request's issuer.
+This allows for arbitrarily complex request-response chains, particularly useful for &quot;middleware&quot; processes.</p>
+<p>There is one other use of inheritance, discussed below: <a href="#inheriting-a-lazy_load_blob">passing data in request chains cheaply</a>.</p>
+<h5 id="awaiting-a-response"><a class="header" href="#awaiting-a-response">Awaiting a Response</a></h5>
+<p>When sending a request, a process can await a response to that specific request, queueing other messages in the meantime.
+Awaiting a response leads to easier-to-read code:</p>
+<ul>
+<li>The response is handled in the next line of code, rather than in a separate iteration of the message-handling loop</li>
+<li>Therefore, the <code>context</code> need not be set.
+The downside of awaiting a response is that all other messages to a process will be queued until that response is received and handled.</li>
+</ul>
+<p>As such, certain applications lend themselves to blocking with an await, and others don't.
+A rule of thumb is: await responses (because simpler code) except when a process needs to performantly handle other messages in the meantime.</p>
+<p>For example, if a file-transfer process can only transfer one file at a time, requests can simply await responses, since the only possible next message will be a response to the request just sent.
+In contrast, if a file-transfer process can transfer more than one file at a time, requests that await responses will block others in the meantime; for performance it may make sense to write the process fully asynchronously.
+The constraint on awaiting is a primary reason why it is desirable to <a href="#spawning-child-processes">spawn child processes</a>.
+Continuing the file-transfer example, by spawning one child &quot;worker&quot; process per file to be transferred, each worker can use the await mechanic to simplify the code, while not limiting performance.</p>
+<h4 id="message-structure"><a class="header" href="#message-structure">Message Structure</a></h4>
+<p>Messages, both requests and responses, can contain arbitrary data, which must be interpreted by the process that receives it.
+The structure of a message contains hints about how best to do this:</p>
+<p>First, messages contain a field labeled <code>body</code>, which holds the actual contents of the message.
+In order to cross the Wasm boundary and be language-agnostic, the <code>body</code> field is simply a byte vector.
+To achieve composability between processes, a process should be very clear, in code and documentation, about what it expects in the <code>body</code> field and how it gets parsed, usually into a language-level struct or object.</p>
+<p>A message also contains a <code>lazy_load_blob</code>, another byte vector, used for opaque, arbitrary, or large data.
+<code>lazy_load_blob</code>s, along with being suitable location for miscellaneous message data, are an optimization for shuttling messages across the Wasm boundary.
+Unlike other message fields, the <code>lazy_load_blob</code> is only moved into a process if explicitly called with (<code>get_blob()</code>).
+Processes can thus choose whether to ingest a <code>lazy_load_blob</code> based on the <code>body</code>/<code>metadata</code>/<code>source</code>/<code>context</code> of a given message.
+<code>lazy_load_blob</code>s hold bytes alongside a <code>mime</code> field for explicit process-and-language-agnostic format declaration, if desired.
+See <a href="#inheriting-a-lazy_load_blob">inheriting a <code>lazy_load_blob</code></a> for a discussion of why lazy loading is useful.</p>
+<p>Lastly, messages contain an optional <code>metadata</code> field, expressed as a JSON-string, to enable middleware processes and other such things to manipulate the message without altering the <code>body</code> itself.</p>
+<h5 id="inheriting-a-lazy_load_blob"><a class="header" href="#inheriting-a-lazy_load_blob">Inheriting a <code>lazy_load_blob</code></a></h5>
+<p>The reason <code>lazy_load_blob</code>s are not automatically loaded into a process is that an intermediate process may not need to access the blob.
+If process A sends a message with a blob to process B, process B can send a message that inherits to process C.
+If process B does not attach a new <code>lazy_load_blob</code> to that inheriting message, the original blob from process A will be attached and accessible to C.</p>
+<p>For example, consider again the file-transfer process discussed <a href="#awaiting-a-response">above</a>.
+Say one node, <code>send.nec</code>, is transferring a file to another node, <code>recv.nec</code>.
+The process of sending a file chunk will look something like:</p>
+<ol>
+<li><code>recv.nec</code> sends a request for chunk N</li>
+<li><code>send.nec</code> receives the request and itself makes a request to the filesystem for the piece of the file</li>
+<li><code>send.nec</code> receives a response from the filesystem with the piece of the file in the <code>lazy_load_blob</code>;
+<code>send.nec</code> sends a response that inherits the blob back to <code>recv.nec</code> without itself having to load the blob, saving the compute and IO required to move the blob across the Wasm boundary.</li>
+</ol>
+<p>This is the second functionality of inheritance; the first is discussed above: <a href="#inheriting-a-response">eliminating the need for bucket-brigading of responses</a>.</p>
+<h4 id="errors"><a class="header" href="#errors">Errors</a></h4>
+<p>Messages that result in networking failures, like requests that timeout, are returned to the process that created them as an error.
+There are only two kinds of send errors: Offline and Timeout.
+Offline means a message's remote target definitively cannot be reached.
+Timeout is multi-purpose: for remote nodes, it may indicate compromised networking; for both remote and local nodes, it may indicate that a process is simply failing to respond in the required time.</p>
+<p>A send error will return to the originating process the initial message, along with any optional <code>context</code>, so that the process can re-send the message, crash, or otherwise handle the failure as the developer desires.
+If the error results from a response, the process may optionally try to re-send a response: it will be directed towards the original outstanding request.</p>
+<h3 id="capabilities"><a class="header" href="#capabilities">Capabilities</a></h3>
+<p>Processes must acquire capabilities from the kernel in order to perform certain operations.
+Processes themselves can also produce capabilities in order to give them to other processes.
+For more information about the general capabilities-based security paradigm, [insert link to good article here].</p>
+<p>The kernel gives out capabilities that allow a process to message another <em>local</em> process.
+It also gives a capability allowing processes to send and receive messages over the network.
+A process can optionally mark itself as <code>public</code>, meaning that it can be messaged by any <em>local</em> process regardless of capabilities.</p>
+<p><a href="./process-capabilities.html">See the capabilities chapter for more details.</a></p>
+<h3 id="spawning-child-processes"><a class="header" href="#spawning-child-processes">Spawning child processes</a></h3>
+<p>A process can spawn &quot;child&quot; processes -- in which case the spawner is known as the &quot;parent&quot;.
+As discussed <a href="#awaiting-a-response">above</a>, one of the primary reasons to write an application with multiple processes is to enable both simple code and high performance.</p>
+<p>Child processes can be used to:</p>
+<ol>
+<li>Run code that may crash without risking crashing the parent</li>
+<li>Run compute-heavy code without blocking the parent</li>
+<li>Run IO-heavy code without blocking the parent</li>
+<li>Break out code that is more easily written with awaits to avoid blocking the parent</li>
+</ol>
+<h3 id="conclusion"><a class="header" href="#conclusion">Conclusion</a></h3>
+<p>This is a high-level overview of process semantics.
+In practice, processes are combined and shared in <strong>packages</strong>, which are generally synonymous with <strong>apps</strong>.</p>
+<p>It's briefly discussed here that processes are compiled to Wasm.
+The details of this are not covered in the Nectar Book, but can be found in the documentation for the <a href="https://github.com/uqbar-dao/nectar">Nectar runtime</a>, which uses <a href="https://wasmtime.dev/">Wasmtime</a>, a WebAssembly runtime, to load, execute, and provide an interface for the subset of Wasm processes that are valid Nectar processes.
+Pragmatically, processes can be compiled using the <a href="https://github.com/uqbar-dao/kit"><code>kit</code> tools</a>.
+The long term goal of the Nectar runtime is to use <a href="https://wasi.dev/">WASI</a> to provide a secure, sandboxed environment for processes to not only make use of the kernel features described in this document, but also to make full use of the entire WebAssembly ecosystem, including the ability to use sandboxed system calls provided by the host via WASI.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="login.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="process-capabilities.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="login.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="process-capabilities.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="theme/customize-buttons.js"></script>
+
+
+    </div>
+    </body>
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Environment Setup - Nectar Book</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../theme/fonts/custom-fonts.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../intro.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="../identity_system.html">Identity System</a></li><li class="chapter-item expanded affix "><a href="../design_philosophy.html">Design Philosophy</a></li><li class="chapter-item expanded affix "><li class="part-title">Getting Started</li><li class="chapter-item expanded "><a href="../install.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../login.html"><strong aria-hidden="true">2.</strong> Join the Network</a></li><li class="chapter-item expanded affix "><li class="part-title">System Components</li><li class="chapter-item expanded "><a href="../processes.html"><strong aria-hidden="true">3.</strong> Processes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../process-capabilities.html"><strong aria-hidden="true">3.1.</strong> Capability-Based Security</a></li><li class="chapter-item expanded "><a href="../process-startup.html"><strong aria-hidden="true">3.2.</strong> Startup, Spindown, and Crashes</a></li></ol></li><li class="chapter-item expanded "><a href="../networking_protocol.html"><strong aria-hidden="true">4.</strong> Networking Protocol</a></li><li class="chapter-item expanded "><a href="../pki.html"><strong aria-hidden="true">5.</strong> Public Key Infrastructure</a></li><li class="chapter-item expanded "><a href="../http_server_and_client.html"><strong aria-hidden="true">6.</strong> HTTP Server & Client</a></li><li class="chapter-item expanded "><a href="../files.html"><strong aria-hidden="true">7.</strong> Files</a></li><li class="chapter-item expanded "><a href="../databases.html"><strong aria-hidden="true">8.</strong> Databases</a></li><li class="chapter-item expanded affix "><li class="part-title">Process Standard Library</li><li class="chapter-item expanded "><a href="../process_stdlib/overview.html"><strong aria-hidden="true">9.</strong> Overview</a></li><li class="chapter-item expanded affix "><li class="part-title">Tutorial: Build and Deploy an App</li><li class="chapter-item expanded "><a href="../my_first_app/chapter_1.html" class="active"><strong aria-hidden="true">10.</strong> Environment Setup</a></li><li class="chapter-item expanded "><a href="../my_first_app/chapter_2.html"><strong aria-hidden="true">11.</strong> Sending Some Messages, Using Some Tools</a></li><li class="chapter-item expanded "><a href="../my_first_app/chapter_3.html"><strong aria-hidden="true">12.</strong> Defining Your Protocol</a></li><li class="chapter-item expanded "><a href="../my_first_app/chapter_4.html"><strong aria-hidden="true">13.</strong> Frontend Time</a></li><li class="chapter-item expanded "><a href="../my_first_app/chapter_5.html"><strong aria-hidden="true">14.</strong> Sharing with the World</a></li><li class="chapter-item expanded affix "><li class="part-title">In-Depth Guide: Chess App</li><li class="chapter-item expanded "><a href="../chess_app/chess_engine.html"><strong aria-hidden="true">15.</strong> Chess Engine</a></li><li class="chapter-item expanded "><a href="../chess_app/frontend.html"><strong aria-hidden="true">16.</strong> Adding a Frontend</a></li><li class="chapter-item expanded "><a href="../chess_app/putting_everything_together.html"><strong aria-hidden="true">17.</strong> Putting Everything Together</a></li><li class="chapter-item expanded "><a href="../chess_app/chat.html"><strong aria-hidden="true">18.</strong> Extension 1: Chat</a></li><li class="chapter-item expanded affix "><li class="part-title">Kit: Development Toolkit</li><li class="chapter-item expanded "><a href="../kit/kit.html"><strong aria-hidden="true">19.</strong> kit</a></li><li class="chapter-item expanded "><a href="../kit/boot-fake-node.html"><strong aria-hidden="true">20.</strong> boot-fake-node</a></li><li class="chapter-item expanded "><a href="../kit/new.html"><strong aria-hidden="true">21.</strong> new</a></li><li class="chapter-item expanded "><a href="../kit/build.html"><strong aria-hidden="true">22.</strong> build</a></li><li class="chapter-item expanded "><a href="../kit/start-package.html"><strong aria-hidden="true">23.</strong> start-package</a></li><li class="chapter-item expanded "><a href="../kit/remove-package.html"><strong aria-hidden="true">24.</strong> remove-package</a></li><li class="chapter-item expanded "><a href="../kit/dev-ui.html"><strong aria-hidden="true">25.</strong> dev-ui</a></li><li class="chapter-item expanded "><a href="../kit/inject-message.html"><strong aria-hidden="true">26.</strong> inject-message</a></li><li class="chapter-item expanded "><a href="../kit/run-tests.html"><strong aria-hidden="true">27.</strong> run-tests</a></li><li class="chapter-item expanded affix "><li class="part-title">Cookbook (Handy Recipes)</li><li class="chapter-item expanded "><a href="../cookbook/cookbook_overview.html"><strong aria-hidden="true">28.</strong> Cookbook Overview</a></li><li class="chapter-item expanded "><a href="../cookbook/manage_child_processes.html"><strong aria-hidden="true">29.</strong> Managing Child Processes</a></li><li class="chapter-item expanded "><a href="../cookbook/publish_to_web.html"><strong aria-hidden="true">30.</strong> Publishing a Website or Web App</a></li><li class="chapter-item expanded "><a href="../cookbook/file_transfer.html"><strong aria-hidden="true">31.</strong> Simple File Transfer Guide</a></li><li class="chapter-item expanded affix "><li class="part-title">API Reference</li><li class="chapter-item expanded "><a href="../apis/overview.html"><strong aria-hidden="true">32.</strong> APIs Overview</a></li><li class="chapter-item expanded "><a href="../apis/http_authentication.html"><strong aria-hidden="true">33.</strong> HTTP API</a></li><li class="chapter-item expanded "><a href="../apis/http_client.html"><strong aria-hidden="true">34.</strong> HTTP Client API</a></li><li class="chapter-item expanded "><a href="../apis/http_server.html"><strong aria-hidden="true">35.</strong> HTTP Server API</a></li><li class="chapter-item expanded "><a href="../apis/kernel.html"><strong aria-hidden="true">36.</strong> Kernel API</a></li><li class="chapter-item expanded "><a href="../apis/kv.html"><strong aria-hidden="true">37.</strong> KV API</a></li><li class="chapter-item expanded "><a href="../apis/net.html"><strong aria-hidden="true">38.</strong> Net API</a></li><li class="chapter-item expanded "><a href="../apis/nectar_wit.html"><strong aria-hidden="true">39.</strong> nectar.wit</a></li><li class="chapter-item expanded "><a href="../apis/sqlite.html"><strong aria-hidden="true">40.</strong> SQLITE API</a></li><li class="chapter-item expanded "><a href="../apis/terminal.html"><strong aria-hidden="true">41.</strong> Terminal API</a></li><li class="chapter-item expanded "><a href="../apis/vfs.html"><strong aria-hidden="true">42.</strong> VFS API</a></li><li class="chapter-item expanded "><a href="../apis/websocket_authentication.html"><strong aria-hidden="true">43.</strong> Websocket API</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Nectar Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="tutorial-build-and-deploy-an-app"><a class="header" href="#tutorial-build-and-deploy-an-app">Tutorial: Build and Deploy an App</a></h1>
+<p>Welcome!
+In these tutorials, you'll setup your development environment and learn about the <code>kit</code> tools.
+You'll learn about templates and also walk through writing an application from the group up, backend and frontend.
+And finally, you'll learn how to deploy applications through the Nectar app store.</p>
+<p>For the purposes of this documentation, terminal commands are provided as-is for ease of copying EXCEPT when the output of the command is also shown.
+In that case, the command is prepended with a <code>$ </code> to distinguish the command from the output.
+The <code>$ </code> should not be copied into the terminal.</p>
+<h1 id="environment-setup"><a class="header" href="#environment-setup">Environment Setup</a></h1>
+<p>In this chapter, you'll walk through setting up an Nectar development environment.
+By the end, you will have created an Nectar application, or package, composed of one or more processes that run on a live Nectar node.
+The application will be a simple chat interface: <code>my_chat_app</code>.</p>
+<p>The following assumes a Unix environment — macOS or Linux.
+If on Windows, <a href="https://learn.microsoft.com/en-us/windows/wsl/install">get WSL</a> first.
+In general, NectarOS does not support Windows.</p>
+<h2 id="acquiring-rust-and-the-nectar-development-tools-kit"><a class="header" href="#acquiring-rust-and-the-nectar-development-tools-kit">Acquiring Rust and the Nectar Development Tools (<code>kit</code>)</a></h2>
+<p>Install Rust and the Nectar Development Tools, or <code>kit</code>:</p>
+<pre><code class="language-bash">curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+cargo install --git https://github.com/uqbar-dao/kit
+</code></pre>
+<h2 id="creating-a-new-nectar-package-template"><a class="header" href="#creating-a-new-nectar-package-template">Creating a New Nectar Package Template</a></h2>
+<p>The <code>kit</code> toolkit has a <a href="https://github.com/uqbar-dao/kit">variety of features</a>.
+One of those tools is <code>new</code>, which creates a template for an Nectar package.
+The <code>new</code> tool takes two arguments: a path to create the template directory and a name for the package:</p>
+<pre><code>$ kit new --help
+Create a Nectar template package
+
+Usage: kit new [OPTIONS] &lt;DIR&gt;
+
+Arguments:
+  &lt;DIR&gt;  Path to create template directory at
+
+Options:
+  -a, --package &lt;PACKAGE&gt;      Name of the package [default: DIR]
+  -u, --publisher &lt;PUBLISHER&gt;  Name of the publisher [default: template.nec]
+  -l, --language &lt;LANGUAGE&gt;    Programming language of the template [default: rust] [possible values: rust, python, javascript]
+  -t, --template &lt;TEMPLATE&gt;    Template to create [default: chat] [possible values: chat, fibonacci]
+      --ui                     If set, use the template with UI
+  -h, --help                   Print help
+</code></pre>
+<p>Create a package <code>my_chat_app</code>:</p>
+<pre><code class="language-bash">kit new my_chat_app
+</code></pre>
+<h2 id="exploring-the-package"><a class="header" href="#exploring-the-package">Exploring the Package</a></h2>
+<p>Nectar packages are sets of one or more Nectar <a href="../processes.html">processes</a>.
+An Nectar package is represented in Unix as a directory that has a <code>pkg/</code> directory within.
+Each process within the package is its own directory.
+By default, the <code>kit new</code> command creates a simple, one-process package, a chat app.
+Other templates, including a Python template and a UI-enabled template can be used by passing different flags to <code>kit new</code> (see <code>kit new --help</code>).
+The default template looks like:</p>
+<pre><code class="language-bash">$ tree my_chat_app
+my_chat_app
+├── my_chat_app
+│   ├── Cargo.toml
+│   └── src
+│       └── lib.rs
+└── pkg
+    ├── manifest.json
+    └── metadata.json
+
+3 directories, 4 files
+</code></pre>
+<p>The <code>my_chat_app/</code> package here contains one process, also named <code>my_chat_app/</code>.
+The process directory contains source files and other metadata for compiling that process.</p>
+<p>In Rust processes, the standard Rust <code>Cargo.toml</code> file is included: it specifies dependencies.
+It is exhaustively defined <a href="https://doc.rust-lang.org/cargo/reference/manifest.html">here</a>.
+The <code>src/</code> directory is where the code for the process lives.</p>
+<p>Also within the package directory is a <code>pkg/</code> directory.
+The <code>pkg/</code> directory contains two files, <code>manifest.json</code> and <code>metadata.json</code>, that specify information the Nectar node needs to run the package, which will be enumerated below.
+The <code>pkg/</code> directory is also where <code>.wasm</code> binaries will be deposited by <a href="#building-the-package"><code>kit build</code></a>.
+The files in the <code>pkg/</code> directory contents are injected into the Nectar node with <a href="#starting-the-package"><code>kit start-package</code></a>.</p>
+<p>Though not included in this template, packages with a frontend have a <code>ui/</code> directory as well.
+For an example, look at the result of:</p>
+<pre><code class="language-bash">kit new my_chat_app_with_ui --ui
+tree my_chat_app_with_ui
+</code></pre>
+<p>Note that not all templates have a UI-enabled version.
+As of 240111, only the Rust chat template has a UI-enabled version.</p>
+<h3 id="pkgmanifestjson"><a class="header" href="#pkgmanifestjson"><code>pkg/manifest.json</code></a></h3>
+<p>The <code>manifest.json</code> file contains information the Nectar node needs in order to run the package:</p>
+<pre><code class="language-bash">$ cat my_chat_app/pkg/manifest.json
+[
+    {
+        &quot;process_name&quot;: &quot;my_chat_app&quot;,
+        &quot;process_wasm_path&quot;: &quot;/my_chat_app.wasm&quot;,
+        &quot;on_exit&quot;: &quot;Restart&quot;,
+        &quot;request_networking&quot;: true,
+        &quot;request_capabilities&quot;: [
+            &quot;net:sys:nectar&quot;
+        ],
+        &quot;grant_capabilities&quot;: [],
+        &quot;public&quot;: true
+    }
+]
+</code></pre>
+<p>This is a JSON array of JSON objects.
+Each object represents one process that will be started when the package is installed.
+A package with multiple processes need not start them all at install time.
+A package may start more than one of the same process, as long as they each have a unique <code>process_name</code>.</p>
+<p>Each object has the following fields:</p>
+<div class="table-wrapper"><table><thead><tr><th>Key</th><th>Required?</th><th>Value type</th></tr></thead><tbody>
+<tr><td><code>&quot;process_name&quot;</code></td><td>Yes</td><td>string</td></tr>
+<tr><td><code>&quot;process_wasm_path&quot;</code></td><td>Yes</td><td>string (representing a path)</td></tr>
+<tr><td><code>&quot;on_exit&quot;</code></td><td>Yes</td><td>string (<code>&quot;None&quot;</code> or <code>&quot;Restart&quot;</code>) or object (covered <a href="./chapter_2.html#aside-on_exit">elsewhere</a>)</td></tr>
+<tr><td><code>&quot;request_networking&quot;</code></td><td>Yes</td><td>bool</td></tr>
+<tr><td><code>&quot;request_capabilities&quot;</code></td><td>No</td><td>array of strings to note process names, or objects to note custom capabilities and from what process to request them</td></tr>
+<tr><td><code>&quot;grant_capabilities&quot;</code></td><td>No</td><td>array of strings to note process names, or objects to note custom capabilities to generate and send to a process</td></tr>
+<tr><td><code>&quot;public&quot;</code></td><td>Yes</td><td>bool</td></tr>
+</tbody></table>
+</div>
+<h3 id="pkgmetadatajson"><a class="header" href="#pkgmetadatajson"><code>pkg/metadata.json</code></a></h3>
+<p>The <code>metadata.json</code> file contains information about the package and the publisher:</p>
+<pre><code class="language-bash">$ cat my_chat_app/pkg/metadata.json
+{
+    &quot;package&quot;: &quot;my_chat_app&quot;,
+    &quot;publisher&quot;: &quot;template.nec&quot;,
+    &quot;version&quot;: [0, 1, 0]
+}
+</code></pre>
+<p>Here, the <code>publisher</code> is some default value, but for a real package, this field should contain the NDNS id of the publishing node.
+The <code>publisher</code> can also be set with a <code>kit new --publisher</code> flag.</p>
+<h3 id="srclibrs"><a class="header" href="#srclibrs"><code>src/lib.rs</code></a></h3>
+<p>TODO</p>
+<h2 id="building-the-package"><a class="header" href="#building-the-package">Building the Package</a></h2>
+<p>To build the package, use the <code>kit build</code> tool.</p>
+<p>This tool accepts an optional directory path as the first argument, or, if none is provided, attempts to build the current working directory.
+As such, either of the following will work:</p>
+<pre><code class="language-bash">kit build my_chat_app
+</code></pre>
+<p>or</p>
+<pre><code class="language-bash">cd my_chat_app
+kit build
+</code></pre>
+<h2 id="booting-a-fake-nectar-node"><a class="header" href="#booting-a-fake-nectar-node">Booting a Fake Nectar Node</a></h2>
+<p>Often, it is optimal to develop on a fake node.
+Fake nodes are simple to set up, easy to restart if broken, and mocked networking makes development testing very straightforward.
+To boot a fake Nectar node for development purposes, use the <code>kit boot-fake-node</code> tool.</p>
+<p><code>kit boot-fake-node</code> downloads the OS- and architecture-appropriate Nectar core binary and runs it without connecting to the live network.
+Instead, it connects to a mocked local network, allowing different fake nodes on the same machine to communicate with each other.
+<code>kit boot-fake-node</code> has many optional configuration flags, but the defaults should work fine:</p>
+<pre><code class="language-bash">kit boot-fake-node
+</code></pre>
+<p>The fake node, just like a real node, will accept inputs from the terminal.
+To exit from the fake node, press <code>Ctrl + C</code>.</p>
+<p>By default, the fake node will bind to port <code>8080</code>.
+Note the port number in the output for <a href="#starting-the-package">later</a>; it will look something like:</p>
+<pre><code class="language-bash">Fri 12/8 15:43 http_server: running on port 8080
+</code></pre>
+<p><code>kit boot-fake-node</code> also accepts a <code>--runtime-path</code> argument.
+When supplied, if it is a path to the Nectar core repo, it will compile and use that binary to start the node.
+Or, if it is a path to an Nectar binary, it will use that binary to start the node.
+For example:</p>
+<pre><code class="language-bash">kit boot-fake-node --runtime-path ~/path/to/nectar
+</code></pre>
+<p>where <code>~/path/to/nectar</code> must be replaced with a path to the Nectar core repo or an Nectar binary.</p>
+<h2 id="optional-starting-a-real-nectar-node"><a class="header" href="#optional-starting-a-real-nectar-node">Optional: Starting a Real Nectar Node</a></h2>
+<p>Alternatively, development sometimes calls for a real node, which has access to the actual Nectar network and its providers, such as integrated LLMs.</p>
+<p>To develop on a real Nectar node, connect to the network and follow the instructions to <a href="../install.html">setup an Nectar node</a>.</p>
+<h2 id="starting-the-package"><a class="header" href="#starting-the-package">Starting the Package</a></h2>
+<p>Time to load and initiate the <code>my_chat_app</code> package. For this, you will use the <code>kit start-package</code> tool.
+Like <a href="#building-the-package"><code>kit build</code></a>, the <code>kit start-package</code> tool receives an optional directory containing the package or, if no directory is received, tries the current working directory.
+It also requires a URL: the address of the node on which to initiate the package.
+The node's URL can be input in one of two ways:</p>
+<ol>
+<li>If running on localhost, the port can be supplied with <code>-p</code> or <code>--port</code>,</li>
+<li>More generally, the node's entire URL can be supplied with a <code>-u</code> or <code>--url</code> flag.</li>
+</ol>
+<p>You can start the package from either within or outside <code>my_chat_app</code> directory.
+After completing the previous step, you should be one directory above the <code>my_chat_app</code> directory and can use the following:</p>
+<pre><code class="language-bash">kit start-package my_chat_app -p 8080
+</code></pre>
+<p>or, if you are already in the correct package directory:</p>
+<pre><code class="language-bash">kit start-package -p 8080
+</code></pre>
+<p>where here the port provided following <code>-p</code> must match the port bound by the node or fake node (see discussion <a href="#booting-a-fake-nectar-node">above</a>).</p>
+<p>The node's terminal should display something like</p>
+<pre><code>Fri 12/8 15:54 my_chat_app: begin
+</code></pre>
+<p>Congratulations on completing the first steps towards developing applications on Nectar!</p>
+<h2 id="using-the-package"><a class="header" href="#using-the-package">Using the Package</a></h2>
+<p>To test out the functionality of <code>my_chat_app</code>, spin up another fake node to chat with in a new terminal:</p>
+<pre><code class="language-bash">kit boot-fake-node -h /tmp/nectar-fake-node-2 -p 8081 -f fake2.nec
+</code></pre>
+<p>The fake nodes communicate over a mocked local network.</p>
+<p>To start the same <code>my_chat_app</code> on the second fake node, again note the port, and supply it with a <code>start-package</code>:</p>
+<pre><code class="language-bash">kit start-package my_chat_app -p 8081
+</code></pre>
+<p>or, if already in the <code>my_chat_app/</code> package directory:</p>
+<pre><code class="language-bash">kit start-package -p 8081
+</code></pre>
+<p>To send a chat message from the first node, run the following in its terminal:</p>
+<pre><code>/m our@my_chat_app:my_chat_app:template.nec {&quot;Send&quot;: {&quot;target&quot;: &quot;fake2.nec&quot;, &quot;message&quot;: &quot;hello world&quot;}}
+</code></pre>
+<p>and replying, from the other terminal:</p>
+<pre><code>/m our@my_chat_app:my_chat_app:template.nec {&quot;Send&quot;: {&quot;target&quot;: &quot;fake.nec&quot;, &quot;message&quot;: &quot;wow, it works!&quot;}}
+</code></pre>
+<p>Messages can also be injected from the outside.
+From a bash terminal, use <code>uqdev inject-message</code>, like so:</p>
+<pre><code class="language-bash">kit inject-message my_chat_app:my_chat_app:template.nec '{&quot;Send&quot;: {&quot;target&quot;: &quot;fake2.nec&quot;, &quot;message&quot;: &quot;hello from the outside world&quot;}}'
+kit inject-message my_chat_app:my_chat_app:template.nec '{&quot;Send&quot;: {&quot;target&quot;: &quot;fake.nec&quot;, &quot;message&quot;: &quot;replying from fake2.nec using first method...&quot;}}' --node fake2.nec
+kit inject-message my_chat_app:my_chat_app:template.nec '{&quot;Send&quot;: {&quot;target&quot;: &quot;fake.nec&quot;, &quot;message&quot;: &quot;and second!&quot;}}' -p 8081
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../process_stdlib/overview.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../my_first_app/chapter_2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../process_stdlib/overview.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../my_first_app/chapter_2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../theme/customize-buttons.js"></script>
+
+
+    </div>
+    </body>
+</html>
