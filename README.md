@@ -22,3 +22,5 @@ Navigate to http://localhost:3000 to view.
    From the editor's and reviewer's perspective, though, it is much easier to read diffs of prose that are per-sentence rather than per-paragraph.
 3. Do not use "double dashes" in prose (`--`).
    Instead use "em dashes" (`—`).
+
+.
