@@ -1,0 +1,732 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Chess Engine - Kinode Book</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../theme/fonts/custom-fonts.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../intro.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="../identity_system.html">Identity System</a></li><li class="chapter-item expanded affix "><a href="../design_philosophy.html">Design Philosophy</a></li><li class="chapter-item expanded affix "><li class="part-title">Getting Started</li><li class="chapter-item expanded "><a href="../install.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../login.html"><strong aria-hidden="true">2.</strong> Join the Network</a></li><li class="chapter-item expanded affix "><li class="part-title">System Components</li><li class="chapter-item expanded "><a href="../processes.html"><strong aria-hidden="true">3.</strong> Processes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../process-capabilities.html"><strong aria-hidden="true">3.1.</strong> Capability-Based Security</a></li><li class="chapter-item expanded "><a href="../process-startup.html"><strong aria-hidden="true">3.2.</strong> Startup, Spindown, and Crashes</a></li></ol></li><li class="chapter-item expanded "><a href="../networking_protocol.html"><strong aria-hidden="true">4.</strong> Networking Protocol</a></li><li class="chapter-item expanded "><a href="../pki.html"><strong aria-hidden="true">5.</strong> Public Key Infrastructure</a></li><li class="chapter-item expanded "><a href="../http_server_and_client.html"><strong aria-hidden="true">6.</strong> HTTP Server & Client</a></li><li class="chapter-item expanded "><a href="../files.html"><strong aria-hidden="true">7.</strong> Files</a></li><li class="chapter-item expanded "><a href="../databases.html"><strong aria-hidden="true">8.</strong> Databases</a></li><li class="chapter-item expanded affix "><li class="part-title">Process Standard Library</li><li class="chapter-item expanded "><a href="../process_stdlib/overview.html"><strong aria-hidden="true">9.</strong> Overview</a></li><li class="chapter-item expanded affix "><li class="part-title">Kit: Development Toolkit</li><li class="chapter-item expanded "><a href="../kit/kit.html"><strong aria-hidden="true">10.</strong> kit</a></li><li class="chapter-item expanded "><a href="../kit/boot-fake-node.html"><strong aria-hidden="true">11.</strong> boot-fake-node</a></li><li class="chapter-item expanded "><a href="../kit/new.html"><strong aria-hidden="true">12.</strong> new</a></li><li class="chapter-item expanded "><a href="../kit/build.html"><strong aria-hidden="true">13.</strong> build</a></li><li class="chapter-item expanded "><a href="../kit/start-package.html"><strong aria-hidden="true">14.</strong> start-package</a></li><li class="chapter-item expanded "><a href="../kit/remove-package.html"><strong aria-hidden="true">15.</strong> remove-package</a></li><li class="chapter-item expanded "><a href="../kit/dev-ui.html"><strong aria-hidden="true">16.</strong> dev-ui</a></li><li class="chapter-item expanded "><a href="../kit/inject-message.html"><strong aria-hidden="true">17.</strong> inject-message</a></li><li class="chapter-item expanded "><a href="../kit/run-tests.html"><strong aria-hidden="true">18.</strong> run-tests</a></li><li class="chapter-item expanded affix "><li class="part-title">Tutorial: Build and Deploy an App</li><li class="chapter-item expanded "><a href="../my_first_app/chapter_1.html"><strong aria-hidden="true">19.</strong> Environment Setup</a></li><li class="chapter-item expanded "><a href="../my_first_app/chapter_2.html"><strong aria-hidden="true">20.</strong> Sending Some Messages, Using Some Tools</a></li><li class="chapter-item expanded "><a href="../my_first_app/chapter_3.html"><strong aria-hidden="true">21.</strong> Defining Your Protocol</a></li><li class="chapter-item expanded "><a href="../my_first_app/chapter_4.html"><strong aria-hidden="true">22.</strong> Frontend Time</a></li><li class="chapter-item expanded "><a href="../my_first_app/chapter_5.html"><strong aria-hidden="true">23.</strong> Sharing with the World</a></li><li class="chapter-item expanded affix "><li class="part-title">In-Depth Guide: Chess App</li><li class="chapter-item expanded "><a href="../chess_app/chess_engine.html" class="active"><strong aria-hidden="true">24.</strong> Chess Engine</a></li><li class="chapter-item expanded "><a href="../chess_app/frontend.html"><strong aria-hidden="true">25.</strong> Adding a Frontend</a></li><li class="chapter-item expanded "><a href="../chess_app/putting_everything_together.html"><strong aria-hidden="true">26.</strong> Putting Everything Together</a></li><li class="chapter-item expanded "><a href="../chess_app/chat.html"><strong aria-hidden="true">27.</strong> Extension 1: Chat</a></li><li class="chapter-item expanded affix "><li class="part-title">Cookbook (Handy Recipes)</li><li class="chapter-item expanded "><a href="../cookbook/cookbook_overview.html"><strong aria-hidden="true">28.</strong> Cookbook Overview</a></li><li class="chapter-item expanded "><a href="../cookbook/manage_child_processes.html"><strong aria-hidden="true">29.</strong> Managing Child Processes</a></li><li class="chapter-item expanded "><a href="../cookbook/publish_to_web.html"><strong aria-hidden="true">30.</strong> Publishing a Website or Web App</a></li><li class="chapter-item expanded "><a href="../cookbook/file_transfer.html"><strong aria-hidden="true">31.</strong> Simple File Transfer Guide</a></li><li class="chapter-item expanded affix "><li class="part-title">API Reference</li><li class="chapter-item expanded "><a href="../apis/overview.html"><strong aria-hidden="true">32.</strong> APIs Overview</a></li><li class="chapter-item expanded "><a href="../apis/http_authentication.html"><strong aria-hidden="true">33.</strong> HTTP API</a></li><li class="chapter-item expanded "><a href="../apis/http_client.html"><strong aria-hidden="true">34.</strong> HTTP Client API</a></li><li class="chapter-item expanded "><a href="../apis/http_server.html"><strong aria-hidden="true">35.</strong> HTTP Server API</a></li><li class="chapter-item expanded "><a href="../apis/kernel.html"><strong aria-hidden="true">36.</strong> Kernel API</a></li><li class="chapter-item expanded "><a href="../apis/kv.html"><strong aria-hidden="true">37.</strong> KV API</a></li><li class="chapter-item expanded "><a href="../apis/net.html"><strong aria-hidden="true">38.</strong> Net API</a></li><li class="chapter-item expanded "><a href="../apis/kinode_wit.html"><strong aria-hidden="true">39.</strong> kinode.wit</a></li><li class="chapter-item expanded "><a href="../apis/sqlite.html"><strong aria-hidden="true">40.</strong> SQLite API</a></li><li class="chapter-item expanded "><a href="../apis/terminal.html"><strong aria-hidden="true">41.</strong> Terminal API</a></li><li class="chapter-item expanded "><a href="../apis/vfs.html"><strong aria-hidden="true">42.</strong> VFS API</a></li><li class="chapter-item expanded "><a href="../apis/websocket_authentication.html"><strong aria-hidden="true">43.</strong> Websocket API</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Kinode Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="in-depth-guide-chess-app"><a class="header" href="#in-depth-guide-chess-app">In-Depth Guide: Chess App</a></h1>
+<p>This guide will walk you through building a very simple chess app on Kinode OS.
+The final result will look like <a href="https://github.com/uqbar-dao/kinode/tree/main/modules/chess">this</a>: chess is in the basic runtime distribution so you can try it yourself.</p>
+<p>To prepare for this tutorial, follow the environment setup guide <a href="../my_first_app/chapter_1.html">here</a>, i.e. <a href="../my_first_app/chapter_1.html#booting-a-fake-kinode-node">start a fake node</a> and then, in another terminal, run:</p>
+<pre><code class="language-bash">kit new my_chess
+cd my_chess
+kit build
+kit start-package -p 8080
+</code></pre>
+<p>Once you have the template app installed and can see it running on your testing node, continue...</p>
+<h1 id="chess-engine"><a class="header" href="#chess-engine">Chess Engine</a></h1>
+<p>Chess is a good example for an Kinode application walk-through because:</p>
+<ol>
+<li>The basic game logic is already readily available.
+There are thousands of high-quality chess libraries across many languages that can be imported into a Wasm app that runs on Kinode.
+We'll be using <a href="https://github.com/pleco-rs/Pleco">pleco</a></li>
+<li>It is a multiplayer game, showing Kinode's p2p communications and ability to serve frontends</li>
+<li>It is fun!</li>
+</ol>
+<p>In <code>my_chess/Cargo.toml</code>, which should be in the <code>my_chess/</code> process directory inside the <code>my_chess/</code> package directory, add <code>pleco = &quot;0.5&quot;</code> to your dependencies.
+In your <code>my_chess/src/lib.rs</code>, replace the existing code with:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use pleco::Board;
+use kinode_process_lib::{await_message, call_init, println, Address};
+
+wit_bindgen::generate!({
+    path: &quot;wit&quot;,
+    world: &quot;process&quot;,
+    exports: {
+        world: Component,
+    },
+});
+
+call_init!(init);
+
+fn init(our: Address) {
+    println!(&quot;{our}: start&quot;);
+
+    loop {
+        let _ = await_message().map(|message| {
+            if !message.is_request() { return };
+            println!(
+                &quot;{our}: got request from {}: {}&quot;,
+                message.source().process(),
+                String::from_utf8_lossy(message.body())
+            );
+        });
+    }
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Now, we have access to a chess board and can manipulate it easily.</p>
+<p>The <a href="https://github.com/pleco-rs/Pleco#using-pleco-as-a-library">pleco docs</a> show everything you can do using the pleco library.
+But this isn't very interesting by itself!
+We want to play chess with other people.
+Let's start by creating a persisted state for the chess app and an <code>body</code> format for sending messages to other nodes.</p>
+<p>In <code>my_chess/src/lib.rs</code> add the following simple Request/Response interface and persistable game state:</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use serde::{Deserialize, Serialize};
+use std::collections::{HashMap, HashSet};
+
+#[derive(Debug, Serialize, Deserialize)]
+enum ChessRequest {
+    NewGame { white: String, black: String },
+    Move { game_id: String, move_str: String },
+    Resign(String),
+}
+
+#[derive(Debug, Eq, PartialEq, Serialize, Deserialize)]
+enum ChessResponse {
+    NewGameAccepted,
+    NewGameRejected,
+    MoveAccepted,
+    MoveRejected,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+struct Game {
+    pub id: String, // the node with whom we are playing
+    pub turns: u64,
+    pub board: String,
+    pub white: String,
+    pub black: String,
+    pub ended: bool,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+struct ChessState {
+    pub games: HashMap&lt;String, Game&gt;, // game is by opposing player id
+}
+<span class="boring">}</span></code></pre></pre>
+<p>Creating explicit <code>ChessRequest</code> and <code>ChessResponse</code> types is the easiest way to ensure reliable and easy-to-parse messages between two processes (TODO: something missing here gramatically, but can't quite find the correct word).
+It makes message-passing very simple.
+If you get a request, you can deserialize it to <code>ChessRequest</code> and ignore or throw an error if that fails.
+If you get a response, you can do the same but with <code>ChessResponse</code>.
+And every request and response that you send can be serialized in kind.
+More advanced apps can take on different structures, but a top-level <code>enum</code> to serialize/deserialize and match on is always a good idea.</p>
+<p>The <code>ChessState</code> <code>struct</code> shown above can also be persisted using the <code>set_state</code> and <code>get_state</code> commands exposed by Kinode's runtime.
+Note that the <code>Game</code> <code>struct</code> here has <code>board</code> as a <code>String</code>.
+This is because the <code>Board</code> type from pleco doesn't implement <code>Serialize</code> or <code>Deserialize</code>.
+We'll have to convert it to a string using <code>fen()</code> before persisting it.
+Then, we will convert it back to a <code>Board</code> with <code>Board::from_fen()</code> when we load it from state.</p>
+<p>The code below will contain a version of the <code>init()</code> function that creates an event loop and handles ChessRequests.
+First, however, it's important to note that these types already bake in some assumptions about our &quot;chess protocol&quot;.
+Remember, requests can either expect a response, or be fired and forgotten.
+Unless a response is expected, there's no way to know if a request was received or not.
+In a game like chess, most actions have a logical response.
+Otherwise, there's no way to easily alert the user that their counterparty has gone offline, or started to otherwise ignore our moves.
+For the sake of the tutorial, there are three kinds of requests and only two expect a response.
+In our code, the <code>NewGame</code> and <code>Move</code> requests will always await a response, blocking until they receive one (or the request times out).
+<code>Resign</code>, however, will be fire-and-forget.
+While a &quot;real&quot; game may prefer to wait for a response, it is important to let one player resign and thus clear their state <em>without</em> that resignation being &quot;accepted&quot; by a non-responsive player, so production-grade resignation logic is non-trivial.</p>
+<p>An aside: when building consumer-grade peer-to-peer apps, you'll find that there are in fact very few &quot;trivial&quot; interaction patterns.
+Something as simple as resigning from a one-on-one game, which would be a single POST request in a client-frontend &lt;&gt; server-backend architecture, requires well-thought-out negotiations to ensure that both players can walk away with a clean state machine, regardless of whether the counterparty is cooperating.
+Adding more &quot;players&quot; to the mix makes this even more complex.
+To keep things clean, leverage the request/response pattern and the <code>context</code> field to store information about how to handle a given response, if you're not awaiting it in a blocking fashion.</p>
+<p>Below, you'll find the full code for the CLI version of the app.
+You can build it and install it on a node using <code>kit</code>.
+You can interact with it in the terminal, primitively, like so (assuming your first node is <code>fake.os</code> and second is <code>fake2.os</code>):</p>
+<pre><code>/a our@my_chess:my_chess:template.os
+/m {&quot;NewGame&quot;: {&quot;white&quot;: &quot;fake.os&quot;, &quot;black&quot;: &quot;fake2.os&quot;}}
+/m {&quot;Move&quot;: {&quot;game_id&quot;: &quot;fake2.os&quot;, &quot;move_str&quot;: &quot;e2e4&quot;}}
+</code></pre>
+<p>(If you want to make a more ergonomic CLI app, consider parsing <code>body</code> as a string...)</p>
+<p>As you read through the code, you might notice a problem with this app: there's no way to see your games!
+A fun project would be to add a CLI command that shows you, in-terminal, the board for a given <code>game_id</code>.
+But in the <a href="./frontend.html">next chapter</a>, we'll add a frontend to this app so you can see your games in a browser.</p>
+<p><code>my_chess/Cargo.toml</code>:</p>
+<pre><code class="language-toml">[package]
+name = &quot;my_chess&quot;
+version = &quot;0.1.0&quot;
+edition = &quot;2021&quot;
+
+[profile.release]
+panic = &quot;abort&quot;
+opt-level = &quot;s&quot;
+lto = true
+
+[dependencies]
+anyhow = &quot;1.0&quot;
+base64 = &quot;0.13&quot;
+bincode = &quot;1.3.3&quot;
+pleco = &quot;0.5&quot;
+serde = { version = &quot;1.0&quot;, features = [&quot;derive&quot;] }
+serde_json = &quot;1.0&quot;
+url = &quot;*&quot;
+kinode_process_lib = { git = &quot;ssh://git@github.com/uqbar-dao/process_lib.git&quot;, rev = &quot;a2d3e9e&quot; }
+wit-bindgen = { git = &quot;https://github.com/bytecodealliance/wit-bindgen&quot;, rev = &quot;efcc759&quot; }
+
+[lib]
+crate-type = [&quot;cdylib&quot;]
+
+[package.metadata.component]
+package = &quot;kinode:process&quot;
+</code></pre>
+<p><code>my_chess/src/lib.rs</code>:</p>
+<pre><pre class="playground"><code class="language-rust">#![feature(let_chains)]
+use pleco::Board;
+use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
+use kinode_process_lib::{
+    await_message, call_init, get_typed_state, println, set_state, Address, Message, NodeId, Request, Response,
+};
+
+extern crate base64;
+
+// Boilerplate: generate the Wasm bindings for an Kinode app
+wit_bindgen::generate!({
+    path: &quot;wit&quot;,
+    world: &quot;process&quot;,
+    exports: {
+        world: Component,
+    },
+});
+
+//
+// Our &quot;chess protocol&quot; request/response format. We'll always serialize these
+// to a byte vector and send them over `body`.
+//
+
+#[derive(Debug, Serialize, Deserialize)]
+enum ChessRequest {
+    NewGame { white: String, black: String },
+    Move { game_id: String, move_str: String },
+    Resign(String),
+}
+
+#[derive(Debug, Eq, PartialEq, Serialize, Deserialize)]
+enum ChessResponse {
+    NewGameAccepted,
+    NewGameRejected,
+    MoveAccepted,
+    MoveRejected,
+}
+
+//
+// Our serializable state format.
+//
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+struct Game {
+    pub id: String, // the node with whom we are playing
+    pub turns: u64,
+    pub board: String,
+    pub white: String,
+    pub black: String,
+    pub ended: bool,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+struct ChessState {
+    pub games: HashMap&lt;String, Game&gt;, // game is by opposing player id
+}
+
+/// Helper function to serialize and save the process state.
+fn save_chess_state(state: &amp;ChessState) {
+    set_state(&amp;bincode::serialize(&amp;state.games).unwrap());
+}
+
+/// Helper function to deserialize the process state. Note that we use a helper function
+/// from process_lib to fetch a typed state, which will return None if the state does
+/// not exist OR fails to deserialize. In either case, we'll make an empty new state.
+fn load_chess_state() -&gt; ChessState {
+    match get_typed_state(|bytes| Ok(bincode::deserialize::&lt;HashMap&lt;String, Game&gt;&gt;(bytes)?)) {
+        Some(games) =&gt; ChessState { games },
+        None =&gt; ChessState {
+            games: HashMap::new(),
+        },
+    }
+}
+
+call_init!(init);
+
+fn init(our: Address) {
+    // A little printout to show in terminal that the process has started.
+    println!(
+        &quot;{} by {}: start&quot;,
+        our.process.process_name, our.process.publisher_node
+    );
+
+    // Grab our state, then enter the main event loop.
+    let mut state: ChessState = load_chess_state();
+    main_loop(&amp;our, &amp;mut state);
+}
+
+fn main_loop(our: &amp;Address, state: &amp;mut ChessState) {
+    loop {
+        // Call await_message() to wait for any incoming messages.
+        // If we get a network error, make a print and throw it away.
+        // In a high-quality consumer-grade app, we'd want to explicitly handle
+        // this and surface it to the user.
+        match await_message() {
+            Err(send_error) =&gt; {
+                println!(&quot;{our}: got network error: {send_error:?}&quot;);
+                continue;
+            }
+            Ok(message) =&gt; match handle_request(&amp;our, &amp;message, state) {
+                Ok(()) =&gt; continue,
+                Err(e) =&gt; println!(&quot;{our}: error handling request: {:?}&quot;, e),
+            },
+        }
+    }
+}
+
+/// Handle chess protocol messages from ourself *or* other nodes.
+fn handle_request(our: &amp;Address, message: &amp;Message, state: &amp;mut ChessState) -&gt; anyhow::Result&lt;()&gt; {
+    // Throw away responses. We never expect any responses *here*, because for every
+    // chess protocol request, we *await* its response in-place. This is appropriate
+    // for direct node&lt;&gt;node comms, less appropriate for other circumstances...
+    if !message.is_request() {
+        return Err(anyhow::anyhow!(&quot;message was response&quot;));
+    }
+    // If the request is from another node, handle it as an incoming request.
+    // Note that we can enforce the ProcessId as well, but it shouldn't be a trusted
+    // piece of information, since another node can easily spoof any ProcessId on a request.
+    // It can still be useful simply as a protocol-level switch to handle different kinds of
+    // requests from the same node, with the knowledge that the remote node can finagle with
+    // which ProcessId a given message can be from. It's their code, after all.
+    if message.source().node != our.node {
+        // Deserialize the request `body` to our format, and throw it away if it
+        // doesn't fit.
+        let Ok(chess_request) = serde_json::from_slice::&lt;ChessRequest&gt;(message.body()) else {
+            return Err(anyhow::anyhow!(&quot;invalid chess request&quot;));
+        };
+        handle_chess_request(&amp;message.source().node, state, &amp;chess_request)
+    // ...and if the request is from ourselves, handle it as our own!
+    // Note that since this is a local request, we *can* trust the ProcessId.
+    // Here, we'll accept messages from the local terminal so as to make this a &quot;CLI&quot; app.
+    } else if message.source().node == our.node
+        &amp;&amp; message.source().process == &quot;terminal:terminal:sys&quot;
+    {
+        let Ok(chess_request) = serde_json::from_slice::&lt;ChessRequest&gt;(message.body()) else {
+            return Err(anyhow::anyhow!(&quot;invalid chess request&quot;));
+        };
+        handle_local_request(our, state, &amp;chess_request)
+    } else {
+        // If we get a request from ourselves that isn't from the terminal, we'll just
+        // throw it away. This is a good place to put a printout to show that we've
+        // received a request from ourselves that we don't know how to handle.
+        return Err(anyhow::anyhow!(
+            &quot;got request from not-the-terminal, ignoring&quot;
+        ));
+    }
+}
+
+/// handle chess protocol messages from other nodes
+fn handle_chess_request(
+    source_node: &amp;NodeId,
+    state: &amp;mut ChessState,
+    action: &amp;ChessRequest,
+) -&gt; anyhow::Result&lt;()&gt; {
+    println!(&quot;chess: handling action from {source_node}: {action:?}&quot;);
+
+    // For simplicity's sake, we'll just use the node we're playing with as the game id.
+    // This limits us to one active game per partner.
+    let game_id = source_node;
+
+    match action {
+        ChessRequest::NewGame { white, black } =&gt; {
+            // Make a new game with source.node
+            // This will replace any existing game with source.node!
+            if state.games.contains_key(game_id) {
+                println!(&quot;chess: resetting game with {game_id} on their request!&quot;);
+            }
+            let game = Game {
+                id: game_id.to_string(),
+                turns: 0,
+                board: Board::start_pos().fen(),
+                white: white.to_string(),
+                black: black.to_string(),
+                ended: false,
+            };
+            // Use our helper function to persist state after every action.
+            // The simplest and most trivial way to keep state. You'll want to
+            // use a database or something in a real app, and consider performance
+            // when doing intensive data-based operations.
+            state.games.insert(game_id.to_string(), game);
+            save_chess_state(&amp;state);
+            // Send a response to tell them we've accepted the game.
+            // Remember, the other player is waiting for this.
+            Response::new()
+                .body(serde_json::to_vec(&amp;ChessResponse::NewGameAccepted)?)
+                .send()
+        }
+        ChessRequest::Move { ref move_str, .. } =&gt; {
+            // Get the associated game, and respond with an error if
+            // we don't have it in our state.
+            let Some(game) = state.games.get_mut(game_id) else {
+                // If we don't have a game with them, reject the move.
+                return Response::new()
+                    .body(serde_json::to_vec(&amp;ChessResponse::MoveRejected)?)
+                    .send()
+            };
+            // Convert the saved board to one we can manipulate.
+            let mut board = Board::from_fen(&amp;game.board).unwrap();
+            if !board.apply_uci_move(move_str) {
+                // Reject invalid moves!
+                return Response::new()
+                    .body(serde_json::to_vec(&amp;ChessResponse::MoveRejected)?)
+                    .send();
+            }
+            game.turns += 1;
+            if board.checkmate() || board.stalemate() {
+                game.ended = true;
+            }
+            // Persist state.
+            game.board = board.fen();
+            save_chess_state(&amp;state);
+            // Send a response to tell them we've accepted the move.
+            Response::new()
+                .body(serde_json::to_vec(&amp;ChessResponse::MoveAccepted)?)
+                .send()
+        }
+        ChessRequest::Resign(_) =&gt; {
+            // They've resigned. The sender isn't waiting for a response to this,
+            // so we don't need to send one.
+            match state.games.get_mut(game_id) {
+                Some(game) =&gt; {
+                    game.ended = true;
+                    save_chess_state(&amp;state);
+                }
+                None =&gt; {}
+            }
+            Ok(())
+        }
+    }
+}
+
+/// Handle actions we are performing. Here's where we'll send_and_await various requests.
+fn handle_local_request(
+    our: &amp;Address,
+    state: &amp;mut ChessState,
+    action: &amp;ChessRequest,
+) -&gt; anyhow::Result&lt;()&gt; {
+    match action {
+        ChessRequest::NewGame { white, black } =&gt; {
+            // Create a new game. We'll enforce that one of the two players is us.
+            if white != &amp;our.node &amp;&amp; black != &amp;our.node {
+                return Err(anyhow::anyhow!(&quot;cannot start a game without us!&quot;));
+            }
+            let game_id = if white == &amp;our.node { black } else { white };
+            // If we already have a game with this player, throw an error.
+            if let Some(game) = state.games.get(game_id)
+                &amp;&amp; !game.ended
+            {
+                return Err(anyhow::anyhow!(&quot;already have a game with {game_id}&quot;));
+            };
+            // Send the other player a NewGame request
+            // The request is exactly the same as what we got from terminal.
+            // We'll give them 5 seconds to respond...
+            let Ok(Message::Response { ref body, .. }) = Request::new()
+                .target((game_id.as_ref(), our.process.clone()))
+                .body(serde_json::to_vec(&amp;action)?)
+                .send_and_await_response(5)? else {
+                    return Err(anyhow::anyhow!(&quot;other player did not respond properly to new game request&quot;))
+                };
+            // If they accept, create a new game — otherwise, error out.
+            if serde_json::from_slice::&lt;ChessResponse&gt;(body)? != ChessResponse::NewGameAccepted {
+                return Err(anyhow::anyhow!(&quot;other player rejected new game request!&quot;));
+            }
+            // New game with default board.
+            let game = Game {
+                id: game_id.to_string(),
+                turns: 0,
+                board: Board::start_pos().fen(),
+                white: white.to_string(),
+                black: black.to_string(),
+                ended: false,
+            };
+            state.games.insert(game_id.to_string(), game);
+            save_chess_state(&amp;state);
+            Ok(())
+        }
+        ChessRequest::Move { game_id, move_str } =&gt; {
+            // Make a move. We'll enforce that it's our turn. The game_id is the
+            // person we're playing with.
+            let Some(game) = state.games.get_mut(game_id) else {
+                return Err(anyhow::anyhow!(&quot;no game with {game_id}&quot;));
+            };
+            if (game.turns % 2 == 0 &amp;&amp; game.white != our.node)
+                || (game.turns % 2 == 1 &amp;&amp; game.black != our.node)
+            {
+                return Err(anyhow::anyhow!(&quot;not our turn!&quot;));
+            } else if game.ended {
+                return Err(anyhow::anyhow!(&quot;that game is over!&quot;));
+            }
+            let mut board = Board::from_fen(&amp;game.board).unwrap();
+            if !board.apply_uci_move(move_str) {
+                return Err(anyhow::anyhow!(&quot;illegal move!&quot;));
+            }
+            // Send the move to the other player, then check if the game is over.
+            // The request is exactly the same as what we got from terminal.
+            // We'll give them 5 seconds to respond...
+            let Ok(Message::Response { ref body, .. }) = Request::new()
+                .target((game_id.as_ref(), our.process.clone()))
+                .body(serde_json::to_vec(&amp;action)?)
+                .send_and_await_response(5)? else {
+                    return Err(anyhow::anyhow!(&quot;other player did not respond properly to our move&quot;))
+                };
+            if serde_json::from_slice::&lt;ChessResponse&gt;(body)? != ChessResponse::MoveAccepted {
+                return Err(anyhow::anyhow!(&quot;other player rejected our move&quot;));
+            }
+            game.turns += 1;
+            if board.checkmate() || board.stalemate() {
+                game.ended = true;
+            }
+            game.board = board.fen();
+            save_chess_state(&amp;state);
+            Ok(())
+        }
+        ChessRequest::Resign(ref with_who) =&gt; {
+            // Resign from a game with a given player.
+            let Some(game) = state.games.get_mut(with_who) else {
+                return Err(anyhow::anyhow!(&quot;no game with {with_who}&quot;));
+            };
+            // send the other player an end game request — no response expected
+            Request::new()
+                .target((with_who.as_ref(), our.process.clone()))
+                .body(serde_json::to_vec(&amp;action)?)
+                .send()?;
+            game.ended = true;
+            save_chess_state(&amp;state);
+            Ok(())
+        }
+    }
+}</code></pre></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../my_first_app/chapter_5.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../chess_app/frontend.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../my_first_app/chapter_5.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../chess_app/frontend.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../theme/customize-buttons.js"></script>
+
+
+    </div>
+    </body>
+</html>

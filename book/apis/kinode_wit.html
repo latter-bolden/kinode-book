@@ -1,0 +1,281 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>kinode.wit - Kinode Book</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../theme/fonts/custom-fonts.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../intro.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="../identity_system.html">Identity System</a></li><li class="chapter-item expanded affix "><a href="../design_philosophy.html">Design Philosophy</a></li><li class="chapter-item expanded affix "><li class="part-title">Getting Started</li><li class="chapter-item expanded "><a href="../install.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="../login.html"><strong aria-hidden="true">2.</strong> Join the Network</a></li><li class="chapter-item expanded affix "><li class="part-title">System Components</li><li class="chapter-item expanded "><a href="../processes.html"><strong aria-hidden="true">3.</strong> Processes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../process-capabilities.html"><strong aria-hidden="true">3.1.</strong> Capability-Based Security</a></li><li class="chapter-item expanded "><a href="../process-startup.html"><strong aria-hidden="true">3.2.</strong> Startup, Spindown, and Crashes</a></li></ol></li><li class="chapter-item expanded "><a href="../networking_protocol.html"><strong aria-hidden="true">4.</strong> Networking Protocol</a></li><li class="chapter-item expanded "><a href="../pki.html"><strong aria-hidden="true">5.</strong> Public Key Infrastructure</a></li><li class="chapter-item expanded "><a href="../http_server_and_client.html"><strong aria-hidden="true">6.</strong> HTTP Server & Client</a></li><li class="chapter-item expanded "><a href="../files.html"><strong aria-hidden="true">7.</strong> Files</a></li><li class="chapter-item expanded "><a href="../databases.html"><strong aria-hidden="true">8.</strong> Databases</a></li><li class="chapter-item expanded affix "><li class="part-title">Process Standard Library</li><li class="chapter-item expanded "><a href="../process_stdlib/overview.html"><strong aria-hidden="true">9.</strong> Overview</a></li><li class="chapter-item expanded affix "><li class="part-title">Kit: Development Toolkit</li><li class="chapter-item expanded "><a href="../kit/kit.html"><strong aria-hidden="true">10.</strong> kit</a></li><li class="chapter-item expanded "><a href="../kit/boot-fake-node.html"><strong aria-hidden="true">11.</strong> boot-fake-node</a></li><li class="chapter-item expanded "><a href="../kit/new.html"><strong aria-hidden="true">12.</strong> new</a></li><li class="chapter-item expanded "><a href="../kit/build.html"><strong aria-hidden="true">13.</strong> build</a></li><li class="chapter-item expanded "><a href="../kit/start-package.html"><strong aria-hidden="true">14.</strong> start-package</a></li><li class="chapter-item expanded "><a href="../kit/remove-package.html"><strong aria-hidden="true">15.</strong> remove-package</a></li><li class="chapter-item expanded "><a href="../kit/dev-ui.html"><strong aria-hidden="true">16.</strong> dev-ui</a></li><li class="chapter-item expanded "><a href="../kit/inject-message.html"><strong aria-hidden="true">17.</strong> inject-message</a></li><li class="chapter-item expanded "><a href="../kit/run-tests.html"><strong aria-hidden="true">18.</strong> run-tests</a></li><li class="chapter-item expanded affix "><li class="part-title">Tutorial: Build and Deploy an App</li><li class="chapter-item expanded "><a href="../my_first_app/chapter_1.html"><strong aria-hidden="true">19.</strong> Environment Setup</a></li><li class="chapter-item expanded "><a href="../my_first_app/chapter_2.html"><strong aria-hidden="true">20.</strong> Sending Some Messages, Using Some Tools</a></li><li class="chapter-item expanded "><a href="../my_first_app/chapter_3.html"><strong aria-hidden="true">21.</strong> Defining Your Protocol</a></li><li class="chapter-item expanded "><a href="../my_first_app/chapter_4.html"><strong aria-hidden="true">22.</strong> Frontend Time</a></li><li class="chapter-item expanded "><a href="../my_first_app/chapter_5.html"><strong aria-hidden="true">23.</strong> Sharing with the World</a></li><li class="chapter-item expanded affix "><li class="part-title">In-Depth Guide: Chess App</li><li class="chapter-item expanded "><a href="../chess_app/chess_engine.html"><strong aria-hidden="true">24.</strong> Chess Engine</a></li><li class="chapter-item expanded "><a href="../chess_app/frontend.html"><strong aria-hidden="true">25.</strong> Adding a Frontend</a></li><li class="chapter-item expanded "><a href="../chess_app/putting_everything_together.html"><strong aria-hidden="true">26.</strong> Putting Everything Together</a></li><li class="chapter-item expanded "><a href="../chess_app/chat.html"><strong aria-hidden="true">27.</strong> Extension 1: Chat</a></li><li class="chapter-item expanded affix "><li class="part-title">Cookbook (Handy Recipes)</li><li class="chapter-item expanded "><a href="../cookbook/cookbook_overview.html"><strong aria-hidden="true">28.</strong> Cookbook Overview</a></li><li class="chapter-item expanded "><a href="../cookbook/manage_child_processes.html"><strong aria-hidden="true">29.</strong> Managing Child Processes</a></li><li class="chapter-item expanded "><a href="../cookbook/publish_to_web.html"><strong aria-hidden="true">30.</strong> Publishing a Website or Web App</a></li><li class="chapter-item expanded "><a href="../cookbook/file_transfer.html"><strong aria-hidden="true">31.</strong> Simple File Transfer Guide</a></li><li class="chapter-item expanded affix "><li class="part-title">API Reference</li><li class="chapter-item expanded "><a href="../apis/overview.html"><strong aria-hidden="true">32.</strong> APIs Overview</a></li><li class="chapter-item expanded "><a href="../apis/http_authentication.html"><strong aria-hidden="true">33.</strong> HTTP API</a></li><li class="chapter-item expanded "><a href="../apis/http_client.html"><strong aria-hidden="true">34.</strong> HTTP Client API</a></li><li class="chapter-item expanded "><a href="../apis/http_server.html"><strong aria-hidden="true">35.</strong> HTTP Server API</a></li><li class="chapter-item expanded "><a href="../apis/kernel.html"><strong aria-hidden="true">36.</strong> Kernel API</a></li><li class="chapter-item expanded "><a href="../apis/kv.html"><strong aria-hidden="true">37.</strong> KV API</a></li><li class="chapter-item expanded "><a href="../apis/net.html"><strong aria-hidden="true">38.</strong> Net API</a></li><li class="chapter-item expanded "><a href="../apis/kinode_wit.html" class="active"><strong aria-hidden="true">39.</strong> kinode.wit</a></li><li class="chapter-item expanded "><a href="../apis/sqlite.html"><strong aria-hidden="true">40.</strong> SQLite API</a></li><li class="chapter-item expanded "><a href="../apis/terminal.html"><strong aria-hidden="true">41.</strong> Terminal API</a></li><li class="chapter-item expanded "><a href="../apis/vfs.html"><strong aria-hidden="true">42.</strong> VFS API</a></li><li class="chapter-item expanded "><a href="../apis/websocket_authentication.html"><strong aria-hidden="true">43.</strong> Websocket API</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Kinode Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="kinodewit"><a class="header" href="#kinodewit"><code>kinode.wit</code></a></h1>
+<p>Throughout this book, readers will see references to <a href="https://component-model.bytecodealliance.org/design/wit.html">WIT</a>, the <a href="https://github.com/WebAssembly/component-model">WebAssembly Component Model</a>.
+WIT, or Wasm Interface Type, is a language for describing the types and functions that are available to a WebAssembly module.
+In conjunction with the Component Model itself, WIT allows for the creation of WebAssembly modules that can be used as components in a larger system.
+This standard has been under development for many years, and while still under construction, it's the perfect tool for building an operating-system-like environment for Wasm apps.</p>
+<p>Kinode OS uses WIT to present a standard interface for Kinode processes.
+This interface is a set of types and functions that are available to all processes.
+It also contains functions (well, just a single function: <code>init()</code>) that processes must implement in order to compile and run in Kinode OS.
+If one can generate WIT bindings in a language that compiles to Wasm, that language can be used to write Kinode processes.
+So far, we've written Kinode processes in Rust, Javascript, Go, and Python.</p>
+<p>To see exactly how to use WIT to write Kinode processes, see the <a href="../my_first_app/chapter_1.html">My First App</a> chapter or the <a href="../chess_app/chess_engine.html">Chess Tutorial</a>.</p>
+<p>To see <code>kinode.wit</code> for itself, see the <a href="https://github.com/uqbar-dao/kinode-wit/blob/master/kinode.wit">file in the GitHub repo</a>.
+Since this interface applies to all processes, it's one of the places in the OS where breaking changes are most likely to make an impact.
+To that end, the version of the WIT file that a process uses must be compatible with the version of Kinode OS on which it runs. 
+We intend to achieve perfect backwards compatibility upon first major release (1.0.0) of the OS and the WIT file.
+After that point, since processes signal the version of the WIT file they use, subsequent updates can be made without breaking existing processes or needing to change the version they use.</p>
+<h2 id="types"><a class="header" href="#types">Types</a></h2>
+<p><a href="https://github.com/uqbar-dao/kinode-wit/blob/373542a9a94ae61a7d216159f9f7bdf9266cd935/kinode.wit#L8-L103">These 14 types</a> make up the entirety of the shared type system between processes and the kernel.
+Most types presented here are implemented in the <a href="../process_stdlib/overview.html">process standard library</a> for ease of use.</p>
+<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
+<p><a href="https://github.com/uqbar-dao/kinode-wit/blob/373542a9a94ae61a7d216159f9f7bdf9266cd935/kinode.wit#L105-L184">These 15 functions</a> are available to processes.
+They are implemented in the kernel.
+Again, the process standard library makes it such that these functions often don't need to be directly called in processes, but they are always available.
+The functions are generally separated into 4 categories: system utilities, process management, capabilities management, and message I/O.
+Future versions of the WIT file will certainly add more functions, but the categories themselves are highly unlikely to change.</p>
+<p>System utilities are functions like <code>print_to_terminal</code>, whose role is to provide a way for processes to interact with the runtime in an idiosyncratic way.</p>
+<p>Process management functions are used to adjust a processes' state in the kernel.
+This includes its state-store and its on-exit behavior.
+This category is also responsible for functions that give processes the ability to spawn and manage child processes.</p>
+<p>Capabilities management functions relate to the capabilities-based security system imposed by the kernel on processes.
+Processes must acquire and manage capabilities in order to perform tasks external to themselves, such as messaging another process or writing to a file.
+See the <a href="../process-capabilities.html">capabilities overview</a> for more details.</p>
+<p>Lastly, message I/O functions are used to send and receive messages between processes.
+Message-passing is the primary means by which processes communicate not only with themselves, but also with runtime modules which expose all kinds of I/O abilities.
+For example, handling an HTTP request involves sending and receiving messages to and from the <code>http_server:disto:sys</code> runtime module.
+Interacting with this module and others occurs through message I/O.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../apis/net.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../apis/sqlite.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../apis/net.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../apis/sqlite.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../theme/customize-buttons.js"></script>
+
+
+    </div>
+    </body>
+</html>

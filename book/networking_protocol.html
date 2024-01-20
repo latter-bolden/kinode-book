@@ -1,0 +1,386 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Networking Protocol - Kinode Book</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/fonts/custom-fonts.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="intro.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="identity_system.html">Identity System</a></li><li class="chapter-item expanded affix "><a href="design_philosophy.html">Design Philosophy</a></li><li class="chapter-item expanded affix "><li class="part-title">Getting Started</li><li class="chapter-item expanded "><a href="install.html"><strong aria-hidden="true">1.</strong> Installation</a></li><li class="chapter-item expanded "><a href="login.html"><strong aria-hidden="true">2.</strong> Join the Network</a></li><li class="chapter-item expanded affix "><li class="part-title">System Components</li><li class="chapter-item expanded "><a href="processes.html"><strong aria-hidden="true">3.</strong> Processes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="process-capabilities.html"><strong aria-hidden="true">3.1.</strong> Capability-Based Security</a></li><li class="chapter-item expanded "><a href="process-startup.html"><strong aria-hidden="true">3.2.</strong> Startup, Spindown, and Crashes</a></li></ol></li><li class="chapter-item expanded "><a href="networking_protocol.html" class="active"><strong aria-hidden="true">4.</strong> Networking Protocol</a></li><li class="chapter-item expanded "><a href="pki.html"><strong aria-hidden="true">5.</strong> Public Key Infrastructure</a></li><li class="chapter-item expanded "><a href="http_server_and_client.html"><strong aria-hidden="true">6.</strong> HTTP Server & Client</a></li><li class="chapter-item expanded "><a href="files.html"><strong aria-hidden="true">7.</strong> Files</a></li><li class="chapter-item expanded "><a href="databases.html"><strong aria-hidden="true">8.</strong> Databases</a></li><li class="chapter-item expanded affix "><li class="part-title">Process Standard Library</li><li class="chapter-item expanded "><a href="process_stdlib/overview.html"><strong aria-hidden="true">9.</strong> Overview</a></li><li class="chapter-item expanded affix "><li class="part-title">Kit: Development Toolkit</li><li class="chapter-item expanded "><a href="kit/kit.html"><strong aria-hidden="true">10.</strong> kit</a></li><li class="chapter-item expanded "><a href="kit/boot-fake-node.html"><strong aria-hidden="true">11.</strong> boot-fake-node</a></li><li class="chapter-item expanded "><a href="kit/new.html"><strong aria-hidden="true">12.</strong> new</a></li><li class="chapter-item expanded "><a href="kit/build.html"><strong aria-hidden="true">13.</strong> build</a></li><li class="chapter-item expanded "><a href="kit/start-package.html"><strong aria-hidden="true">14.</strong> start-package</a></li><li class="chapter-item expanded "><a href="kit/remove-package.html"><strong aria-hidden="true">15.</strong> remove-package</a></li><li class="chapter-item expanded "><a href="kit/dev-ui.html"><strong aria-hidden="true">16.</strong> dev-ui</a></li><li class="chapter-item expanded "><a href="kit/inject-message.html"><strong aria-hidden="true">17.</strong> inject-message</a></li><li class="chapter-item expanded "><a href="kit/run-tests.html"><strong aria-hidden="true">18.</strong> run-tests</a></li><li class="chapter-item expanded affix "><li class="part-title">Tutorial: Build and Deploy an App</li><li class="chapter-item expanded "><a href="my_first_app/chapter_1.html"><strong aria-hidden="true">19.</strong> Environment Setup</a></li><li class="chapter-item expanded "><a href="my_first_app/chapter_2.html"><strong aria-hidden="true">20.</strong> Sending Some Messages, Using Some Tools</a></li><li class="chapter-item expanded "><a href="my_first_app/chapter_3.html"><strong aria-hidden="true">21.</strong> Defining Your Protocol</a></li><li class="chapter-item expanded "><a href="my_first_app/chapter_4.html"><strong aria-hidden="true">22.</strong> Frontend Time</a></li><li class="chapter-item expanded "><a href="my_first_app/chapter_5.html"><strong aria-hidden="true">23.</strong> Sharing with the World</a></li><li class="chapter-item expanded affix "><li class="part-title">In-Depth Guide: Chess App</li><li class="chapter-item expanded "><a href="chess_app/chess_engine.html"><strong aria-hidden="true">24.</strong> Chess Engine</a></li><li class="chapter-item expanded "><a href="chess_app/frontend.html"><strong aria-hidden="true">25.</strong> Adding a Frontend</a></li><li class="chapter-item expanded "><a href="chess_app/putting_everything_together.html"><strong aria-hidden="true">26.</strong> Putting Everything Together</a></li><li class="chapter-item expanded "><a href="chess_app/chat.html"><strong aria-hidden="true">27.</strong> Extension 1: Chat</a></li><li class="chapter-item expanded affix "><li class="part-title">Cookbook (Handy Recipes)</li><li class="chapter-item expanded "><a href="cookbook/cookbook_overview.html"><strong aria-hidden="true">28.</strong> Cookbook Overview</a></li><li class="chapter-item expanded "><a href="cookbook/manage_child_processes.html"><strong aria-hidden="true">29.</strong> Managing Child Processes</a></li><li class="chapter-item expanded "><a href="cookbook/publish_to_web.html"><strong aria-hidden="true">30.</strong> Publishing a Website or Web App</a></li><li class="chapter-item expanded "><a href="cookbook/file_transfer.html"><strong aria-hidden="true">31.</strong> Simple File Transfer Guide</a></li><li class="chapter-item expanded affix "><li class="part-title">API Reference</li><li class="chapter-item expanded "><a href="apis/overview.html"><strong aria-hidden="true">32.</strong> APIs Overview</a></li><li class="chapter-item expanded "><a href="apis/http_authentication.html"><strong aria-hidden="true">33.</strong> HTTP API</a></li><li class="chapter-item expanded "><a href="apis/http_client.html"><strong aria-hidden="true">34.</strong> HTTP Client API</a></li><li class="chapter-item expanded "><a href="apis/http_server.html"><strong aria-hidden="true">35.</strong> HTTP Server API</a></li><li class="chapter-item expanded "><a href="apis/kernel.html"><strong aria-hidden="true">36.</strong> Kernel API</a></li><li class="chapter-item expanded "><a href="apis/kv.html"><strong aria-hidden="true">37.</strong> KV API</a></li><li class="chapter-item expanded "><a href="apis/net.html"><strong aria-hidden="true">38.</strong> Net API</a></li><li class="chapter-item expanded "><a href="apis/kinode_wit.html"><strong aria-hidden="true">39.</strong> kinode.wit</a></li><li class="chapter-item expanded "><a href="apis/sqlite.html"><strong aria-hidden="true">40.</strong> SQLite API</a></li><li class="chapter-item expanded "><a href="apis/terminal.html"><strong aria-hidden="true">41.</strong> Terminal API</a></li><li class="chapter-item expanded "><a href="apis/vfs.html"><strong aria-hidden="true">42.</strong> VFS API</a></li><li class="chapter-item expanded "><a href="apis/websocket_authentication.html"><strong aria-hidden="true">43.</strong> Websocket API</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Kinode Book</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="networking-protocol"><a class="header" href="#networking-protocol">Networking Protocol</a></h1>
+<h3 id="1-protocol-overview-and-motivation"><a class="header" href="#1-protocol-overview-and-motivation">1. Protocol Overview and Motivation</a></h3>
+<p>The Kinode networking protocol is designed to be performant, reliable, private, and peer-to-peer, while still enabling access for nodes without a static public IP address.</p>
+<p>The networking protocol is NOT designed to be all-encompassing, that is, the only way that two Kinodes will ever communicate.
+Many Kinode runtimes will provide userspace access to HTTP server/client capabilities, TCP sockets, and much more.
+Some applications will choose to use such facilities to communicate.
+This networking protocol is merely a common language that every Kinode is guaranteed to speak.
+For this reason, it is the protocol on which system processes will communicate, and it will be a reasonable default for most applications.</p>
+<p>In order for nodes to attest to their identity without any central authority, all networking information is made available onchain.
+Networking information can take two forms: direct or routed.
+The former allows for completely direct peer-to-peer connections, and the latter allows nodes without a physical network configuration that permits direct connections to route messages through a peer.</p>
+<p>The networking protocol can and will be implemented in multiple underlying protocols.
+Since the protocol is encrypted, a secure underlying connection with TLS or HTTPS is never necessary.
+WebSockets are prioritized since we expect to quickly build Kinodes that run purely in-browser.
+The other transmission protocols with slots in the onchain identity data structure are: TCP, UDP, and WebTransport.</p>
+<h3 id="2-onchain-networking-information"><a class="header" href="#2-onchain-networking-information">2. Onchain Networking Information</a></h3>
+<p>All nodes must publish an Ed25519 EdDSA networking public key onchain using the protocol registry contract.
+A new key transaction may be posted at any time, but because agreement on networking keys is required to establish a connection and send messages between nodes, changes to onchain networking information will temporarily disrupt networking.
+Therefore, all nodes must have robust access to the onchain PKI, meaning: multiple backup options and multiple pathways to read onchain data.
+Because it may take time for a new networking key to proliferate to all nodes, (anywhere from seconds to days depending on chain indexing access) a node that changes its networking key should expect downtime immediately after doing so.</p>
+<p>Nodes that wish to make direct connections must post an IP and port onchain.The registry contract has one IP slot per node, which the owner address of a node can update at will.
+The contract has four port slots, one each for WebSockets (<code>ws</code>), TCP, UDP, and WebTransport (<code>wt</code>).
+Each port slot can be updated individually by the owner address of a node.
+Indirect nodes must leave these slots blank, and instead fill out a <code>routing</code> field, which contains a list of nodes that are allowed and expected to route messages to them.</p>
+<p>Nodes with onchain networking information (an IP address and at least one port) will be referred to as <strong>direct</strong> nodes, and ones without will be referred to as <strong>indirect</strong> nodes.</p>
+<p>If a node is indirect, it must initiate a connection with at least one of its allowed routers in order to begin networking.
+Until such a connection is successfully established, the indirect node is offline.
+In practice, an indirect node that wants reliable access to the network should (1) have many routers listed onchain and (2) connect to as many of them as possible on startup.
+In order to acquire such routers in practice, a node will likely need to provide some payment or service to them.</p>
+<h3 id="3-websockets-protocol"><a class="header" href="#3-websockets-protocol">3. WebSockets protocol</a></h3>
+<p>Currently, only the WebSockets protocol is implemented.
+In the future, the <code>net:distro:sys</code> runtime module will be responsible for implementing the networking protocol on top of the other transport protocols declared onchain.
+The runtime will also be responsible for choosing the optimal way to serve a given message based on the recipient's onchain networking information.
+Each protocol may have different precise semantics depending on the underlying transport protocol: the following is a general description of the WebSockets protocol.</p>
+<p>This protocol does not make use of any WebSocket frames other than Binary, Ping, and Pong.
+Pings should be responded to with a Pong.
+These are only used to keep the connection alive.
+All content is sent as Binary frames.
+Binary frames in the current protocol version (1) are limited to 10MB. This includes the full serialized <code>KernelMessage</code>.</p>
+<p>All data structures are serialized and deserialized using <a href="https://msgpack.org/index.html">MessagePack</a>.</p>
+<h4 id="31-data-structures"><a class="header" href="#31-data-structures">3.1. Data Structures</a></h4>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct HandshakePayload {
+    pub protocol_version: u8,
+    pub name: String,
+    pub signature: Vec&lt;u8&gt;,
+    pub proxy_request: bool,
+}
+
+struct RoutingRequest {
+    pub protocol_version: u8,
+    pub source: String,
+    pub signature: Vec&lt;u8&gt;,
+    pub target: String,
+}
+
+/// Note: indicate where to find Address, Rsvp, Message, and LazyLoadBlob type definitions
+struct KernelMessage {
+    pub id: u64,
+    pub source: Address,
+    pub target: Address,
+    pub rsvp: Rsvp,
+    pub message: Message,
+    pub lazy_load_blob: Option&lt;LazyLoadBlob&gt;,
+}
+<span class="boring">}</span></code></pre></pre>
+<h4 id="32-establishing-a-connection"><a class="header" href="#32-establishing-a-connection">3.2. Establishing a Connection</a></h4>
+<p>The WebSockets protocol uses the <a href="http://www.noiseprotocol.org/noise.html">Noise Protocol Framework</a> to encrypt all messages end-to-end.
+The parameters used are <code>Noise_XX_25519_ChaChaPoly_BLAKE2s</code>.</p>
+<p>Using the XX pattern means we follow this interactive pattern:</p>
+<pre><code>  -&gt; e
+  &lt;- e, ee, s, es
+  -&gt; s, se
+</code></pre>
+<p>The initiator is the node that is trying to establish a connection.</p>
+<p><strong>If the target is direct</strong>, the intiator uses the IP and port provided onchain to establish a WebSocket connection.
+If the connection fails, the target is considered offline.</p>
+<p><strong>If the target is indirect</strong>, the initiator uses the IP and port of one of the target's routers to establish a WebSocket connection.
+If a given router is unreachable, or fails to comport to the protocol, others should be tried until they are exhausted or too much time has passed (subject to the specific implementation).
+If this process fails, the target is considered offline.</p>
+<p><strong>If the target is indirect</strong>, before beginning the XX handshake pattern, the initiator sends a <code>RoutingRequest</code> to the target.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>pub struct RoutingRequest {
+    pub protocol_version: u8,
+    pub source: String,
+    pub signature: Vec&lt;u8&gt;,
+    pub target: String,
+}
+<span class="boring">}</span></code></pre></pre>
+<p>The <code>protocol_version</code> is the current protocol version, which is 1.
+The <code>source</code> is the initiator's node ID, as provided onchain.
+The <code>signature</code> must be created by the initiator's networking public key. The content is the routing target's node ID (i.e., the node which the initiator would like to establish an e2e encrypted connection with) concatenated with the router's node ID (i.e., the node which the initiator is sending the <code>RoutingRequest</code> to, which will serve as a router for the connection if it accepts).
+The <code>target</code> is the routing target's node ID that must be signed above.</p>
+<p>[TODO document the rejection/acceptance of RoutingRequests]</p>
+<p>Once a connection is established, the initiator sends an <code>e</code> message, containing an empty payload.</p>
+<p>The target responds with the <code>e, ee, s, es</code> pattern, including a <code>HandshakePayload</code> serialized with MessagePack.</p>
+<pre><pre class="playground"><code class="language-rust"><span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>struct HandshakePayload {
+    pub protocol_version: u8,
+    pub name: String,
+    pub signature: Vec&lt;u8, Global&gt;,
+    pub proxy_request: bool,
+}
+<span class="boring">}</span></code></pre></pre>
+<p>The current <code>protocol_version</code> is 1.
+The <code>name</code> is the name of the node, as provided onchain.
+The <code>signature</code> must be created by the node's networking public key, visible onchain.
+The content is the public key they will use to encrypt messages on this connection.
+How often this key changes is implementation-specific but should be frequent.
+The <code>proxy_request</code> is a boolean indicating whether the initiator is asking for routing service to another node.</p>
+<p>As the target, or receiver of the new connection, <code>proxy_request</code> will always be false. This field is only used by the initiator.</p>
+<p>Finally, the initiator responds with the <code>s, se</code> pattern, including a <code>HandshakePayload</code> of their own.</p>
+<p>After this pattern is complete, the connection switches to transport mode and can be used to send and receive messages.</p>
+<h4 id="32-sending-messages"><a class="header" href="#32-sending-messages">3.2. Sending Messages</a></h4>
+<p>Every message sent over the connection is a <code>KernelMessage</code>, serialized with MessagePack, then encrypted using the keys exchanged in the Noise protocol XX pattern, sent in a single Binary WebSockets message.</p>
+<h4 id="33-receiving-messages"><a class="header" href="#33-receiving-messages">3.3. Receiving Messages</a></h4>
+<p>When listening for messages, the protocol may ignore messages other than Binary, but should also respond to Ping messages with Pongs.</p>
+<p>When a Binary message is received, it should first be decrypted using the keys exchanged in the handshake exchange, then deserialized as a <code>KernelMessage</code>. If this fails, the message should be ignored and the connection must be closed.</p>
+<p>Successfully decrypted and deserialized messages should have their <code>source</code> field checked for the correct node ID and then passed to the kernel.</p>
+<h4 id="34-closing-a-connection"><a class="header" href="#34-closing-a-connection">3.4. Closing a Connection</a></h4>
+<p>All connection errors must result in closing a connection.</p>
+<p>Failure to send a message must be treated as a connection error.</p>
+<p>Failure to decrypt or deserialize a message must be treated as a connection error.</p>
+<p>If a <code>KernelMessage</code>'s source is not the node ID which the message recipient is expecting, it must be treated as a connection error.</p>
+<p>These behaviors are necessary since they indicate that the networking information of a counterparty may have changed and a new connection must be established using the new data onchain.</p>
+<p>Connections may be closed due to inactivity or load-balancing. This behavior is implementation-specific.</p>
+<p>[TODO document the management of passthrough connections held open by routers]</p>
+<p>[TODO document the optionality of exposing IP vs. using a router, regardless of other node's status]</p>
+<h3 id="4-connection-maintenance-and-errors"><a class="header" href="#4-connection-maintenance-and-errors">4. Connection Maintenance and Errors</a></h3>
+<p>The system's networking module seeks to abstract away the many complexities of p2p networking from app developers.
+To this end, it reduces all networking issues to either Offline or Timeout.</p>
+<p>Messages do not have to expect a response.
+If no response is expected, a networking-level offline or timeout error may still be thrown.
+Local messages will only receive timeout errors if they expect a response.</p>
+<p>If a peer is direct, i.e. they have networking information published onchain, determining their offline status is simple: try to create a connection and send a message; it will throw an offline error if this message fails. If a message is not responded to before the timeout counter expires, it will throw a timeout.</p>
+<p>If a peer is indirect, i.e. they have routers, multiple attempts must be made before either an offline error is thrown.
+The specific implementation of the protocol may vary in this regard (e.g. it may try to connect to all routers, or limit the number of attempts to a subset of routers).
+As with direct peers, if a message is not responded to before the timeout counter expires, it will throw a timeout.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="process-startup.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="pki.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="process-startup.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="pki.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="theme/customize-buttons.js"></script>
+
+
+    </div>
+    </body>
+</html>
